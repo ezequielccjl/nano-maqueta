@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { useFonts } from 'expo-font';
+import ListaCuentas from './cuentas/ListaCuentas';
 
 const Cuentas = () => {
 
@@ -20,6 +21,7 @@ const Cuentas = () => {
             <View style={styles.header}>
                 <Text style={{ fontSize: 30, fontFamily: 'MavenProBold', color: 'white' }}>Cuentas</Text>
             </View>
+            <ListaCuentas />
         </View>
     )
 }
