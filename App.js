@@ -3,5 +3,5 @@ import Cuentas from "./src/components/Cuentas";
 import Login from "./src/components/Login";
 
 export default function App() {
-  return <Navigation />;
+  return <Login />;
 }

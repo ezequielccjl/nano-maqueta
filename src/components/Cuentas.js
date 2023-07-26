@@ -2,9 +2,10 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { useFonts } from 'expo-font';
 import ListaCuentas from './cuentas/ListaCuentas';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 const Cuentas = () => {
-
+    const headerHeight = useHeaderHeight();
     const [loaded] = useFonts({
         MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
         MavenProRegular: require("../../assets/fonts/MavenPro-Regular.ttf"),
@@ -19,7 +20,7 @@ const Cuentas = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={{ fontSize: 30, fontFamily: 'MavenProBold', color: 'white' }}>Cuentas</Text>
+                <Text style={{ ...styles.title, position: 'absolute', top: (230 / 2) - (headerHeight / 1.5) }}>Cuentas</Text>
             </View>
             <ListaCuentas />
         </View>
@@ -31,7 +32,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF3232',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 150,
+        height: 230,
+    },
+    title: {
+        fontSize: 30,
+        fontFamily: 'MavenProBold',
+        color: 'white',
     }
 })
 

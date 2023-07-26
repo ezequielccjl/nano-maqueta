@@ -20,6 +20,13 @@ const data = [
     estado: 'Armada',
     btn: "DESARMAR",
   },
+  {
+    name: "Guada",
+    id: "7bcr49eSm",
+    particion: 7,
+    estado: 'Desarmada',
+    btn: "ARMAR",
+  },
 ];
 
 export default data;
