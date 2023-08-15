@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import HeaderMain from "./src/components/cuentas/HeaderCuentas";
 import Estado from "./src/components/estado/Estado";
 import Ejemplo from "./src/components/Ejemplo";
+import CuentaItem from "./src/components/cuentas/CuentaItem";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +29,7 @@ const FooterNavigator = () => {
     >
       <Tab.Screen
         name="Cuentas"
-        component={Cuentas}
+        component={CuentaItem}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="list-alt" size={24} color={color} />
@@ -46,7 +47,7 @@ const FooterNavigator = () => {
         component={Notificaciones}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" size={24} color={color} />
+            <Ionicons name="notifications" size={24} color={color} />
           ),
           headerTitle: () => <HeaderMain />,
           headerRight: () => <Estado />,

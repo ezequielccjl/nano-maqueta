@@ -1,4 +1,13 @@
-const data = [
+export interface IData{
+  name: string;
+  id: string;
+  particion: number;
+  panel: string;
+  estado: string;
+  btn: string
+}
+
+const data:IData[] = [
   {
     name: "Oficina",
     id: "2zd33b8c",
