@@ -4,7 +4,14 @@ import React from "react";
 const CuentaTile = ({ cuenta, hasButton }) => {
   return (
     <View style={{ alignItems: "center", marginBottom: 10 }}>
-      <View key={cuenta.id} style={styles.item}>
+      <View
+        key={cuenta.id}
+        style={[
+          styles.item,
+          !hasButton && { paddingRight: 50 },
+          hasButton && { width: "90%" },
+        ]}
+      >
         <View style={{ flexDirection: "row" }}>
           <View
             style={{
@@ -87,7 +94,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     fontFamily: "MavenProMedium",
     justifyContent: "space-between",
-    paddingRight: 50,
   },
   dot: {
     borderRadius: 50,

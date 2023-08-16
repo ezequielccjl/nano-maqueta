@@ -11,7 +11,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import HeaderMain from "./src/components/cuentas/HeaderCuentas";
 import Estado from "./src/components/estado/Estado";
-import Ejemplo from "./src/components/Ejemplo";
 import CuentaItem from "./src/components/cuentas/CuentaItem";
 
 const Tab = createBottomTabNavigator();

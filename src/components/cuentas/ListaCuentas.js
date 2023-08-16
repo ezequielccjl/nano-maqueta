@@ -19,15 +19,11 @@ const ListaCuentas = () => {
     MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
-  const Item = ({ item }) => {
-    return <CuentaTile cuenta={item} hasButton={true} />;
-  };
-
   return (
     <View style={styles.container}>
       <FlatList
         data={data}
-        renderItem={({ item }) => <Item item={item} />}
+        renderItem={({ item }) => <CuentaTile cuenta={item} hasButton={true} />}
         keyExtractor={(item) => item.id}
       />
     </View>
@@ -39,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 150,
     marginBottom: 70,
-  }
+  },
 });
 
 export default ListaCuentas;
