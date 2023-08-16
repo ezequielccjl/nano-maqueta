@@ -29,7 +29,7 @@ const FooterNavigator = () => {
     >
       <Tab.Screen
         name="Cuentas"
-        component={CuentaItem}
+        component={Cuentas}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="list-alt" size={24} color={color} />
@@ -44,7 +44,7 @@ const FooterNavigator = () => {
       />
       <Tab.Screen
         name="Notificaciones"
-        component={Notificaciones}
+        component={CuentaItem}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="notifications" size={24} color={color} />

@@ -1,13 +1,14 @@
-export interface IData{
+export interface IData {
   name: string;
   id: string;
   particion: number;
   panel: string;
   estado: string;
   btn: string
+  zonas?: any[]
 }
 
-const data:IData[] = [
+const data: IData[] = [
   {
     name: "Oficina",
     id: "2zd33b8c",
@@ -15,6 +16,39 @@ const data:IData[] = [
     panel: "DSC",
     estado: "Desarmada",
     btn: "ARMAR",
+    zonas: [
+      {
+        name: 'Zona 1',
+      },
+      {
+        name: 'Zona 2',
+      },
+      {
+        name: 'Zona 3',
+      },
+      {
+        name: 'Zona 4',
+      },
+      {
+        name: 'Zona 5',
+      },
+      {
+        name: 'Zona 6',
+      },
+      {
+        name: 'Zona 7',
+      },
+      {
+        name: 'Zona 8',
+      },
+      {
+        name: 'Zona 9',
+      },
+      {
+        name: 'Zona 10',
+      },
+
+    ]
   },
   {
     name: "Terraza",
