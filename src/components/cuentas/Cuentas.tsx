@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   title: {
-    fontSize: 30,
+    fontSize: 35,
     fontFamily: "MavenProBold",
     color: "white",
   },

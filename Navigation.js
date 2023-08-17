@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import HeaderMain from "./src/components/cuentas/HeaderCuentas";
 import Estado from "./src/components/estado/Estado";
 import CuentaItem from "./src/components/cuentas/CuentaItem";
+import Particiones from "./src/components/cuentas/particiones";
 
 const Tab = createBottomTabNavigator();
 
@@ -58,7 +59,7 @@ const FooterNavigator = () => {
       />
       <Tab.Screen
         name="Ajustes"
-        component={Ajustes}
+        component={Particiones}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="ios-settings-sharp" size={24} color={color} />

@@ -1,14 +1,22 @@
-export interface IData {
+export interface ICuenta {
   name: string;
   id: string;
   particion: number;
   panel: string;
   estado: string;
-  btn: string
-  zonas?: any[]
+  btn: string;
+  zonas?: any[];
+  particiones?: any[];
 }
 
-const data: IData[] = [
+export interface IActividad {
+  id?:number;
+  fecha: string;
+  asunto: string;
+  hora:string;
+}
+
+export const apiCuentas: ICuenta[] = [
   {
     name: "Oficina",
     id: "2zd33b8c",
@@ -19,36 +27,87 @@ const data: IData[] = [
     zonas: [
       {
         name: 'Zona 1',
+        activated: true
       },
       {
         name: 'Zona 2',
+        activated: false
       },
       {
         name: 'Zona 3',
+        activated: false
       },
       {
         name: 'Zona 4',
+        activated: true
       },
       {
         name: 'Zona 5',
+        activated: true
       },
       {
         name: 'Zona 6',
+        activated: true
       },
       {
         name: 'Zona 7',
+        activated: false
       },
       {
         name: 'Zona 8',
+        activated: false
       },
       {
         name: 'Zona 9',
+        activated: true
       },
       {
         name: 'Zona 10',
+        activated: false
       },
 
-    ]
+    ],
+    particiones:[
+      {
+        name: 'Partición 1',
+      },
+      {
+        name: 'Partición 2',
+      },
+      {
+        name: 'Partición 3',
+      },
+      {
+        name: 'Partición 4',
+      },
+      {
+        name: 'Partición 5',
+      },
+      {
+        name: 'Partición 6',
+      },
+      {
+        name: 'Partición 7',
+      },
+      {
+        name: 'Partición 8',
+      },
+      {
+        name: 'Partición 9',
+      },
+      {
+        name: 'Partición 10',
+      },
+      {
+        name: 'Partición 11',
+      },
+      {
+        name: 'Partición 12',
+      },
+      {
+        name: 'Partición 13',
+      }
+    ],
   },
   {
     name: "Terraza",
@@ -100,4 +159,35 @@ const data: IData[] = [
   },
 ];
 
-export default data;
+export const apiActividad: IActividad[] = [
+  {
+    fecha: '17/07/2023',
+    asunto: 'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.',
+    hora: '15:03'
+  },
+  {
+    fecha: '17/07/2023',
+    asunto: 'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.',
+    hora: '11:24'
+  },
+  {
+    fecha: '13/07/2023',
+    asunto: 'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.',
+    hora: '19:42'
+  },
+  {
+    fecha: '13/07/2023',
+    asunto: 'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.',
+    hora: '13:01'
+  },
+  {
+    fecha: '11/07/2023',
+    asunto: 'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.',
+    hora: '21:12'
+  },
+  {
+    fecha: '10/07/2023',
+    asunto: 'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.',
+    hora: '00:01'
+  }
+]

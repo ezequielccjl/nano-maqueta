@@ -7,9 +7,9 @@ import {
   StatusBar,
 } from "react-native";
 import React from "react";
-import data from "../../data/data.ts";
+import { apiCuentas } from "../../data/data";
 import { useFonts } from "expo-font";
-import CuentaTile from "./cuenta-tile.tsx";
+import CuentaTile from "./cuenta-tile";
 
 const ListaCuentas = () => {
   const [loaded] = useFonts({
@@ -22,7 +22,7 @@ const ListaCuentas = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={apiCuentas}
         renderItem={({ item }) => <CuentaTile cuenta={item} hasButton={true} />}
         keyExtractor={(item) => item.id}
       />
