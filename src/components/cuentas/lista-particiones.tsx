@@ -1,6 +1,6 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import Input from "../Input";
+import Input from "../util/Input";
 import { useFonts } from "expo-font";
 import { apiCuentas } from "../../data/data";
 import ItemGrid from "../item-grid";

@@ -24,6 +24,10 @@ const Actividad = () => {
     setActividad(apiActividad);
   }, []);
 
+  if (!loaded) {
+    return null;
+  }
+
   const agruparPorFechas = (
     lista: IActividad[]
   ): { fecha: string; actividades: IActividad[] }[] => {

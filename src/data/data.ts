@@ -16,6 +16,12 @@ export interface IActividad {
   hora:string;
 }
 
+export interface INotificaciones {
+  id?:number;
+  fecha: string;
+  asunto: string;
+}
+
 export const apiCuentas: ICuenta[] = [
   {
     name: "Oficina",
@@ -190,4 +196,31 @@ export const apiActividad: IActividad[] = [
     asunto: 'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.',
     hora: '00:01'
   }
+]
+
+export const apiNotificaiones: INotificaciones[] = [
+  {
+    fecha:'3m',
+    asunto:'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.'
+  },
+  {
+    fecha:'5h',
+    asunto:'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.'
+  },
+  {
+    fecha:'6h',
+    asunto:'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.'
+  },
+  {
+    fecha:'2d',
+    asunto:'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.'
+  },
+  {
+    fecha:'2d',
+    asunto:'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.'
+  },
+  {
+    fecha:'3d',
+    asunto:'Lorem ipsum dolor sit amet consectetur. Ultrices a nulla vitae et egestas laoreet.'
+  },
 ]

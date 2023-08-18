@@ -15,7 +15,7 @@ import { ICuenta, apiCuentas } from "../../data/data";
 import CuentaTile from "./cuenta-tile";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Input from "../Input";
+import Input from "../util/Input";
 import ItemGrid from "../item-grid";
 import Switch from "../util/switch";
 
