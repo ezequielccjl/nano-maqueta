@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { useFonts } from "expo-font";
-import ListaCuentas from "./ListaCuentas";
+import ListaCuentas from "./lista-cuentas";
 import { useHeaderHeight } from "@react-navigation/elements";
 
 const Cuentas = () => {

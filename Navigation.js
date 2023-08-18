@@ -3,16 +3,13 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 
-import Cuentas from "./src/components/cuentas/Cuentas";
-import Notificaciones from "./src/components/Notificaciones";
-import Ajustes from "./src/components/Ajustes";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import HeaderMain from "./src/components/cuentas/HeaderCuentas";
 import Estado from "./src/components/estado/Estado";
 import CuentaItem from "./src/components/cuentas/CuentaItem";
 import Particiones from "./src/components/cuentas/particiones";
+import Actividad from "./src/components/actividad/actividad";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +26,7 @@ const FooterNavigator = () => {
     >
       <Tab.Screen
         name="Cuentas"
-        component={Cuentas}
+        component={Actividad}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="list-alt" size={24} color={color} />

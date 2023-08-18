@@ -52,43 +52,6 @@ const CuentaItem = () => {
     return dataFormat;
   };
 
-  const calculateBorderRadius = (index, itemCount) => {
-    const isFirstElement = index === 0;
-    const isLastElement = index === itemCount - 1;
-
-    if (isFirstElement) {
-      return { borderTopLeftRadius: 10 };
-    } else if (index === 1) {
-      return { borderTopRightRadius: 10 };
-    } else if (isLastElement) {
-      return { borderBottomRightRadius: 10 };
-    } else if (index === itemCount - 2 && itemCount % 2 === 0) {
-      return { borderBottomLeftRadius: 10 };
-    }
-
-    return {};
-  };
-
-  const getRowBackgroundColor = (index) => {
-    return index % 2 === 0 ? "#FFFFFF" : "#F9F9F9";
-  };
-
-  const ItemRender = ({ item, index }) => {
-    return (
-      <View
-        style={{
-          ...gridStyles.item,
-          backgroundColor: getRowBackgroundColor(Math.floor(index / 2)),
-          ...calculateBorderRadius(index, cuenta.zonas.length),
-        }}
-      >
-        <View style={gridStyles.stateDot}></View>
-        <Text style={gridStyles.text}>{item.name}</Text>
-        <MaterialIcons name="edit" size={24} color="black" />
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -234,24 +197,6 @@ const gridStyles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
-  },
-  item: {
-    width: "50%",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    paddingTop: 17,
-    paddingBottom: 17,
-  },
-  text: {
-    fontFamily: "MavenProMedium",
-    fontSize: 20,
-  },
-  stateDot: {
-    backgroundColor: "#59C300",
-    width: 15,
-    height: 15,
-    borderRadius: 50,
   },
 });
 

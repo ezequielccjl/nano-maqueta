@@ -1,11 +1,19 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
+import { useFonts } from "expo-font";
 
 const CuentaTile = ({ cuenta, hasButton }) => {
+  const [loaded] = useFonts({
+    MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
+    MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
+    MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
+    MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
+  });
+
   return (
     <View style={{ alignItems: "center", marginBottom: 10 }}>
       <View
-        key={cuenta.id}
+        key={cuenta?.id}
         style={[
           styles.item,
           !hasButton && { paddingRight: 50 },
@@ -26,18 +34,18 @@ const CuentaTile = ({ cuenta, hasButton }) => {
               style={{
                 ...styles.dot,
                 backgroundColor:
-                  cuenta.estado === "Armada" ? "#37DB5F" : "#DB3641",
+                  cuenta?.estado === "Armada" ? "#37DB5F" : "#DB3641",
               }}
             >
-              <Text style={styles.textDot}>{cuenta.name.charAt(0)}</Text>
+              <Text style={styles.textDot}>{cuenta?.name?.charAt(0)}</Text>
             </View>
             <View style={styles.btnAction}>
-              <Text style={styles.btnActionText}>{cuenta.btn}</Text>
+              <Text style={styles.btnActionText}>{cuenta?.btn}</Text>
             </View>
           </View>
           <View style={{ justifyContent: "center" }}>
             <Text style={{ fontSize: 20, fontFamily: "MavenProMedium" }}>
-              {cuenta.name}
+              {cuenta?.name}
             </Text>
             <Text
               style={{
@@ -46,7 +54,7 @@ const CuentaTile = ({ cuenta, hasButton }) => {
                 fontFamily: "MavenProMedium",
               }}
             >
-              Alarma {cuenta.estado}
+              Alarma {cuenta?.estado}
             </Text>
             <Text
               style={{
@@ -55,7 +63,7 @@ const CuentaTile = ({ cuenta, hasButton }) => {
                 fontFamily: "MavenProMedium",
               }}
             >
-              Partición {cuenta.particion}
+              Partición {cuenta?.particion}
             </Text>
             <Text
               style={{
@@ -64,7 +72,7 @@ const CuentaTile = ({ cuenta, hasButton }) => {
                 fontFamily: "MavenProMedium",
               }}
             >
-              Partición {cuenta.panel}
+              Partición {cuenta?.panel}
             </Text>
           </View>
         </View>

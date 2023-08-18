@@ -24,7 +24,7 @@ const ListaCuentas = () => {
       <FlatList
         data={apiCuentas}
         renderItem={({ item }) => <CuentaTile cuenta={item} hasButton={true} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item?.id}
       />
     </View>
   );
