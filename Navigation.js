@@ -10,6 +10,8 @@ import Estado from "./src/components/estado/Estado";
 import CuentaItem from "./src/components/cuentas/CuentaItem";
 import Particiones from "./src/components/cuentas/particiones";
 import Actividad from "./src/components/actividad/actividad";
+import Ajustes from "./src/components/Ajustes";
+import Cuentas from "./src/components/cuentas/Cuentas";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +28,7 @@ const FooterNavigator = () => {
     >
       <Tab.Screen
         name="Cuentas"
-        component={Actividad}
+        component={Ajustes}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="list-alt" size={24} color={color} />

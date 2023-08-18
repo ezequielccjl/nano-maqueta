@@ -17,6 +17,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Input from "../Input";
 import ItemGrid from "../item-grid";
+import Switch from "../util/switch";
 
 const CuentaItem = () => {
   const headerHeight = useHeaderHeight();
@@ -83,21 +84,7 @@ const CuentaItem = () => {
             <Text style={[styles.mavenGray20, { marginRight: 9 }]}>
               Recordar clave
             </Text>
-            <TouchableOpacity
-              style={[
-                styles.outerSwitch,
-                isOn
-                  ? { justifyContent: "flex-end", backgroundColor: "#FF3232" }
-                  : {
-                      justifyContent: "flex-start",
-                      backgroundColor: "#D9D9D9",
-                    },
-              ]}
-              activeOpacity={1}
-              onPress={toggleSwitch}
-            >
-              <View style={styles.innerSwitch} />
-            </TouchableOpacity>
+            <Switch toggleSwitch={toggleSwitch} isOn={isOn} />
           </View>
         </View>
         <View style={{ marginTop: 15 }}>
@@ -174,22 +161,6 @@ const styles = StyleSheet.create({
   zonasContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  innerSwitch: {
-    width: 22,
-    height: 22,
-    backgroundColor: "white",
-    borderRadius: 15,
-    elevation: 8,
-  },
-  outerSwitch: {
-    width: 50,
-    height: 29,
-    backgroundColor: "gray",
-    borderRadius: 15,
-    alignItems: "center",
-    flexDirection: "row",
-    paddingHorizontal: 4,
   },
 });
 
