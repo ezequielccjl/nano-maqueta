@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { useFonts } from "expo-font";
 
-const Authentication = () => {
+const Authentication = ({ navigation }) => {
   const [password, setPassword] = useState<string>("");
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
@@ -71,7 +71,10 @@ const Authentication = () => {
           pressMode="string"
           onPress={(val) => handleInput(val)}
         />
-        <TouchableOpacity style={styles.touchable}>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => navigation.goBack()}
+        >
           <Text style={styles.touchableText}>Ingresar</Text>
         </TouchableOpacity>
       </View>

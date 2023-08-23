@@ -23,7 +23,9 @@ const ListaCuentas = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         data={apiCuentas}
-        renderItem={({ item }) => <CuentaTile navigation={navigation} cuenta={item} hasButton={true} />}
+        renderItem={({ item }) => (
+          <CuentaTile navigation={navigation} cuenta={item} hasButton={true} />
+        )}
         keyExtractor={(item) => item?.id}
       />
     </View>
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 150,
     marginBottom: 70,
+    overflow: "hidden",
   },
 });
 

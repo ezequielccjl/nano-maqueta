@@ -1,8 +1,13 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useFonts } from "expo-font";
+import Switch from "./util/switch";
+import CustomModal from "./modal/modal";
 
 const Login = ({ navigation }) => {
+  const [titleModal, setTitleModal] = useState(undefined);
+  const [subtitleModal, setSubtitleModal] = useState(undefined);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loaded] = useFonts({
     MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../assets/fonts/MavenPro-Regular.ttf"),
@@ -15,8 +20,18 @@ const Login = ({ navigation }) => {
   }
 
   const loginHandler = () => {
-    navigation.navigate("Home")
-  }
+    navigation.navigate("Home");
+  };
+
+  const toggleModalPass = () => {
+    setIsModalOpen(true), setTitleModal("Recuperar Contraseña");
+    setSubtitleModal("Ingrese su mail para recuperar contraseña");
+  };
+
+  const toggleModalConexion = () => {
+    setIsModalOpen(true), setTitleModal("Ingrese URL Conexión");
+    setSubtitleModal(undefined);
+  };
 
   return (
     <View style={styles.container}>
@@ -29,11 +44,27 @@ const Login = ({ navigation }) => {
         <Text style={styles.subtitle}>EVOLUCIÓN QUE SE TRANSMITE</Text>
       </View>
       <View style={styles.buttons}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.btnIngresar} onPress={loginHandler}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={styles.btnIngresar}
+          onPress={loginHandler}
+        >
           <Text style={styles.textBtnIngresar}>INGRESAR</Text>
         </TouchableOpacity>
-        <Text style={styles.olvidaste}>¿Olvidaste tu contraseña?</Text>
+        <TouchableOpacity onPress={toggleModalPass}>
+          <Text style={styles.olvidaste}>¿Olvidaste tu contraseña?</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={toggleModalConexion}>
+          <Text style={styles.cambiarConexion}>Cambiar conexión Back-End</Text>
+        </TouchableOpacity>
       </View>
+      <CustomModal
+        title={titleModal}
+        subtitle={subtitleModal}
+        setSubtitle={setSubtitleModal}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </View>
   );
 };
@@ -41,7 +72,7 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
   header: {
     height: 323,
@@ -80,13 +111,22 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   textBtnIngresar: {
+    fontSize: 20,
     fontFamily: "MavenProMedium",
     textAlign: "center",
     color: "white",
   },
   olvidaste: {
+    fontFamily: "MavenProSemiBold",
+    fontSize: 15,
     marginTop: 28,
+    color: "#6F6F6F",
+    textAlign: "center",
+  },
+  cambiarConexion: {
     fontFamily: "MavenProMedium",
+    fontSize: 15,
+    marginTop: 28,
     color: "#6F6F6F",
     textAlign: "center",
   },

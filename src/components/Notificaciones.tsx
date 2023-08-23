@@ -43,10 +43,9 @@ const Notificaciones = () => {
           </Text>
         </View>
       </View>
-      <View style={{ paddingHorizontal: 20, marginTop: 150 }}>
+      <View style={{ marginTop: 150, marginBottom: 70 }}>
         <FlatList
           data={apiNotificaiones}
-          ItemSeparatorComponent={() => <Text></Text>}
           renderItem={({ item }) => <NotificationItem item={item} />}
         />
       </View>
@@ -78,6 +77,8 @@ const styles = StyleSheet.create({
     marginTop: 260,
   },
   notiItem: {
+    marginHorizontal: 20,
+    marginBottom: 15,
     backgroundColor: "#FFFFFF",
     paddingTop: 22,
     paddingLeft: 20,

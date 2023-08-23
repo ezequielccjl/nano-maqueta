@@ -14,7 +14,8 @@ import Authentication from "./src/components/auth/authentication";
 import Cuentas from "./src/components/cuentas/Cuentas";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "./src/components/Login";
-import Notificaciones from "./src/components/Notificaciones";
+import CuentaItem from "./src/components/cuentas/CuentaItem";
+import Actividad from "./src/components/actividad/actividad";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,8 +24,8 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="CuentaItem" component={CuentaItem} />
       <Stack.Screen name="Particiones" component={Particiones} />
+      <Stack.Screen name="CuentaItem" component={CuentaItem} />
       <Stack.Screen name="Home" component={FooterNavigator} />
     </Stack.Navigator>
   );
@@ -100,6 +101,9 @@ export default function Navigation() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={FooterNavigator} />
         <Stack.Screen name="CuentaItem" component={CuentaItem} />
+        <Stack.Screen name="Particiones" component={Particiones} />
+        <Stack.Screen name="Auth" component={Authentication} />
+        <Stack.Screen name="Actividad" component={Actividad} />
       </Stack.Navigator>
     </NavigationContainer>
   );

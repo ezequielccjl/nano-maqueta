@@ -1,33 +1,26 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import { useHeaderHeight } from "@react-navigation/elements";
 import ListaParticiones from "./lista-particiones";
+import Navbar from "../navbar/navbar";
 
 const Particiones = () => {
   const headerHeight = useHeaderHeight();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <Navbar />
       <View style={styles.header}>
-        <Text
-          style={{
-            ...styles.title,
-            position: "absolute",
-            top: 230 / 2 - headerHeight / 1.5,
-          }}
-        >
-          Particiones
-        </Text>
+        <Text style={styles.title}>Particiones</Text>
+        <Text style={styles.title}>Oficina</Text>
       </View>
       <ListaParticiones />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
-    position: "absolute",
-    top: 0,
     backgroundColor: "#FF3232",
     justifyContent: "center",
     alignItems: "center",

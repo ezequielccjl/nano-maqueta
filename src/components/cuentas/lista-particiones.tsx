@@ -37,6 +37,7 @@ const ListaParticiones = () => {
         <FlatList
           data={formatData(cuenta?.particiones)}
           keyExtractor={(item) => item.key}
+          scrollEnabled={false}
           renderItem={({ item, index }) => (
             <ItemGrid
               item={item}
@@ -55,7 +56,6 @@ const ListaParticiones = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 230,
     paddingHorizontal: 20,
     paddingTop: 20,
   },
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 const gridStyles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginVertical: 20,
   },
 });
 

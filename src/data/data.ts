@@ -71,6 +71,18 @@ export const apiCuentas: ICuenta[] = [
         name: 'Zona 10',
         activated: false
       },
+      {
+        name: 'Zona 11',
+        activated: false
+      },
+      {
+        name: 'Zona 12',
+        activated: false
+      },
+      {
+        name: 'Zona 13',
+        activated: false
+      },
 
     ],
     particiones:[

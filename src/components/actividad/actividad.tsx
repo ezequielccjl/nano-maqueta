@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import CuentaTile from "../cuentas/cuenta-tile";
@@ -6,6 +6,7 @@ import { ICuenta, apiCuentas, apiActividad, IActividad } from "../../data/data";
 import { useFonts } from "expo-font";
 import { Background } from "@react-navigation/elements";
 import ItemActividad from "./actividad-item";
+import Navbar from "../navbar/navbar";
 
 const Actividad = () => {
   const [cuenta, setCuenta] = useState<ICuenta>();
@@ -50,13 +51,15 @@ const Actividad = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <Navbar />
       <View style={styles.header}>
         <CuentaTile cuenta={cuenta} hasButton={false} />
       </View>
       <View style={styles.listContainer}>
         <FlatList
           data={agruparPorFechas(actividad)}
+          scrollEnabled={false}
           renderItem={({ item, index }) => (
             <ItemActividad
               item={item}
@@ -66,7 +69,7 @@ const Actividad = () => {
           )}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -94,7 +97,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   listContainer: {
-    marginTop: 15,
+    flex: 1,
+    marginVertical: 15,
     paddingHorizontal: 20,
   },
 });

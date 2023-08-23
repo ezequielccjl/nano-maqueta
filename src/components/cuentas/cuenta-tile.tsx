@@ -3,7 +3,15 @@ import React from "react";
 import { useFonts } from "expo-font";
 import CuentaItem from "./CuentaItem";
 
-const CuentaTile = ({ navigation, cuenta, hasButton }: { navigation?: any; cuenta: any; hasButton: any; }) => {
+const CuentaTile = ({
+  navigation,
+  cuenta,
+  hasButton,
+}: {
+  navigation?: any;
+  cuenta: any;
+  hasButton: any;
+}) => {
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
@@ -40,9 +48,12 @@ const CuentaTile = ({ navigation, cuenta, hasButton }: { navigation?: any; cuent
             >
               <Text style={styles.textDot}>{cuenta?.name?.charAt(0)}</Text>
             </View>
-            <View style={styles.btnAction}>
+            <TouchableOpacity
+              style={styles.btnAction}
+              onPress={() => navigation.navigate("Auth")}
+            >
               <Text style={styles.btnActionText}>{cuenta?.btn}</Text>
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={{ justifyContent: "center" }}>
             <Text style={{ fontSize: 20, fontFamily: "MavenProMedium" }}>
@@ -78,7 +89,10 @@ const CuentaTile = ({ navigation, cuenta, hasButton }: { navigation?: any; cuent
           </View>
         </View>
         {hasButton && (
-          <TouchableOpacity style={styles.redirect} onPress={() => navigation.navigate('CuentaItem')}>
+          <TouchableOpacity
+            style={styles.redirect}
+            onPress={() => navigation.navigate("CuentaItem")}
+          >
             <Image source={require("../../../assets/imgs/arrow-right.png")} />
           </TouchableOpacity>
         )}
