@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useFonts } from "expo-font";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [loaded] = useFonts({
     MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../assets/fonts/MavenPro-Regular.ttf"),
@@ -13,6 +13,11 @@ const Login = () => {
   if (!loaded) {
     return null;
   }
+
+  const loginHandler = () => {
+    navigation.navigate("Home")
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -24,7 +29,7 @@ const Login = () => {
         <Text style={styles.subtitle}>EVOLUCIÓN QUE SE TRANSMITE</Text>
       </View>
       <View style={styles.buttons}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.btnIngresar}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.btnIngresar} onPress={loginHandler}>
           <Text style={styles.textBtnIngresar}>INGRESAR</Text>
         </TouchableOpacity>
         <Text style={styles.olvidaste}>¿Olvidaste tu contraseña?</Text>
@@ -36,6 +41,7 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between'
   },
   header: {
     height: 323,
@@ -62,6 +68,7 @@ const styles = StyleSheet.create({
   buttons: {
     marginTop: 20,
     alignItems: "center",
+    paddingBottom: 100,
   },
   btnIngresar: {
     width: 250,

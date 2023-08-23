@@ -11,8 +11,24 @@ import Particiones from "./src/components/cuentas/particiones";
 import Ajustes from "./src/components/Ajustes";
 import Notificaciones from "./src/components/Notificaciones";
 import Authentication from "./src/components/auth/authentication";
+import Cuentas from "./src/components/cuentas/Cuentas";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Login from "./src/components/Login";
+import Notificaciones from "./src/components/Notificaciones";
 
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const StackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="CuentaItem" component={CuentaItem} />
+      <Stack.Screen name="Particiones" component={Particiones} />
+      <Stack.Screen name="Home" component={FooterNavigator} />
+    </Stack.Navigator>
+  );
+};
 
 const FooterNavigator = () => {
   return (
@@ -27,7 +43,7 @@ const FooterNavigator = () => {
     >
       <Tab.Screen
         name="Cuentas"
-        component={Authentication}
+        component={Cuentas}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="list-alt" size={24} color={color} />
@@ -57,7 +73,7 @@ const FooterNavigator = () => {
       />
       <Tab.Screen
         name="Ajustes"
-        component={Particiones}
+        component={Ajustes}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="ios-settings-sharp" size={24} color={color} />
@@ -77,7 +93,14 @@ const FooterNavigator = () => {
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <FooterNavigator />
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home" component={FooterNavigator} />
+        <Stack.Screen name="CuentaItem" component={CuentaItem} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

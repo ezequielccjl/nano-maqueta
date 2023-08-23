@@ -11,7 +11,7 @@ import { apiCuentas } from "../../data/data";
 import { useFonts } from "expo-font";
 import CuentaTile from "./cuenta-tile";
 
-const ListaCuentas = () => {
+const ListaCuentas = ({ navigation }) => {
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
@@ -23,7 +23,7 @@ const ListaCuentas = () => {
     <View style={styles.container}>
       <FlatList
         data={apiCuentas}
-        renderItem={({ item }) => <CuentaTile cuenta={item} hasButton={true} />}
+        renderItem={({ item }) => <CuentaTile navigation={navigation} cuenta={item} hasButton={true} />}
         keyExtractor={(item) => item?.id}
       />
     </View>
