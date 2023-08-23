@@ -18,6 +18,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Input from "../Input";
 import ItemGrid from "../item-grid";
 import Switch from "../util/switch";
+import Navbar from "../navbar/navbar";
 
 const CuentaItem = () => {
   const headerHeight = useHeaderHeight();
@@ -55,6 +56,7 @@ const CuentaItem = () => {
 
   return (
     <View style={styles.container}>
+      <Navbar />
       <View style={styles.header}>
         <View
           style={{
@@ -72,7 +74,7 @@ const CuentaItem = () => {
       </View>
 
       <View style={{ flex: 1, paddingHorizontal: 20 }}>
-        <View style={{ marginTop: 230 }}>
+        <View>
           <Pressable style={styles.btnDesarmar}>
             <Text style={styles.mavenGray20}>Desarmar</Text>
           </Pressable>
@@ -112,8 +114,6 @@ const CuentaItem = () => {
 
 const styles = StyleSheet.create({
   header: {
-    position: "absolute",
-    top: 0,
     backgroundColor: "#FF3232",
     justifyContent: "center",
     alignItems: "center",

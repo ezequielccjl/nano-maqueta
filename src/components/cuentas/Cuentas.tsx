@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import ListaCuentas from "./lista-cuentas";
 import { useHeaderHeight } from "@react-navigation/elements";
 
-const Cuentas = () => {
+const Cuentas = ({ navigation }) => {
   const headerHeight = useHeaderHeight();
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
@@ -30,7 +30,7 @@ const Cuentas = () => {
           Cuentas
         </Text>
       </View>
-      <ListaCuentas />
+      <ListaCuentas navigation={navigation} />
     </View>
   );
 };

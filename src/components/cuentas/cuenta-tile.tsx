@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useFonts } from "expo-font";
+import CuentaItem from "./CuentaItem";
 
-const CuentaTile = ({ cuenta, hasButton }) => {
+const CuentaTile = ({ navigation, cuenta, hasButton }: { navigation?: any; cuenta: any; hasButton: any; }) => {
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
@@ -77,9 +78,9 @@ const CuentaTile = ({ cuenta, hasButton }) => {
           </View>
         </View>
         {hasButton && (
-          <View style={styles.redirect}>
+          <TouchableOpacity style={styles.redirect} onPress={() => navigation.navigate('CuentaItem')}>
             <Image source={require("../../../assets/imgs/arrow-right.png")} />
-          </View>
+          </TouchableOpacity>
         )}
       </View>
     </View>
