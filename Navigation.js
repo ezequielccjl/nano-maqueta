@@ -10,6 +10,7 @@ import Estado from "./src/components/estado/Estado";
 import Particiones from "./src/components/cuentas/particiones";
 import Ajustes from "./src/components/Ajustes";
 import Notificaciones from "./src/components/Notificaciones";
+import Authentication from "./src/components/auth/authentication";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +27,7 @@ const FooterNavigator = () => {
     >
       <Tab.Screen
         name="Cuentas"
-        component={Ajustes}
+        component={Authentication}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="list-alt" size={24} color={color} />
