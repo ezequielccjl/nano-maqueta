@@ -1,8 +1,18 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
+import CustomModalList from "./modal/modal-with-list";
+import CustomModal from "./modal/modal";
 
-const ItemGrid = ({ item, index, lenghtData, hasState }) => {
+const ItemGrid = ({
+  item,
+  index,
+  lenghtData,
+  hasState,
+  hasEdit,
+  isParticion,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const calculateBorderRadius = (index, itemCount) => {
     const isFirstElement = index === 0;
     const isLastElement = index === itemCount - 1;
@@ -41,7 +51,32 @@ const ItemGrid = ({ item, index, lenghtData, hasState }) => {
         />
       )}
       <Text style={gridStyles.text}>{item.name}</Text>
-      <MaterialIcons name="edit" size={24} color="black" />
+      {hasEdit && (
+        <TouchableOpacity onPress={() => setIsModalOpen(true)}>
+          <MaterialIcons name="edit" size={24} color="black" />
+        </TouchableOpacity>
+      )}
+      {isParticion ? (
+        <CustomModalList
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          title="Editar Partición"
+          subtitle="Ingrese nuevo nombre"
+          hasInput={true}
+          placeholder="Nombre"
+          titleList="Zonas asociadas a la partición"
+          submitText="Guardar"
+        />
+      ) : (
+        <CustomModal
+          isModalOpen={isModalOpen}
+          title={"Ingrese nuevo nombre"}
+          placeholder={"Nombre Zona"}
+          setIsModalOpen={setIsModalOpen}
+          setSubtitle={() => {}}
+          subtitle={undefined}
+        />
+      )}
     </View>
   );
 };

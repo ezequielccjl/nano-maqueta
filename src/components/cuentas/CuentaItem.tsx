@@ -127,7 +127,9 @@ const CuentaItem = ({ navigation }) => {
                 item={item}
                 index={index}
                 hasState={true}
+                hasEdit={true}
                 lenghtData={cuenta.zonas.length}
+                isParticion={false}
               />
             )}
             numColumns={2}

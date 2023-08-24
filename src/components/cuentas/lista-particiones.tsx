@@ -44,6 +44,8 @@ const ListaParticiones = () => {
               index={index}
               lenghtData={cuenta.particiones.length}
               hasState={false}
+              hasEdit={true}
+              isParticion={true}
             />
           )}
           numColumns={2}
