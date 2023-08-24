@@ -1,6 +1,7 @@
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useFonts } from "expo-font";
+import { TextInput } from "react-native-paper";
 
 const CustomModal = ({
   isModalOpen,
@@ -8,7 +9,9 @@ const CustomModal = ({
   title,
   subtitle,
   setSubtitle,
+  placeholder,
 }) => {
+  const [text, setText] = useState("");
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
@@ -31,6 +34,20 @@ const CustomModal = ({
         <View style={styles.modal}>
           {title && <Text style={styles.title}>{title}</Text>}
           {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+          <View style={{ marginHorizontal: 20 }}>
+            <TextInput
+              label={placeholder}
+              value={text}
+              mode="flat"
+              underlineColor="#FF3232"
+              activeUnderlineColor="#FF3232"
+              onChangeText={(text) => setText(text)}
+              style={{
+                backgroundColor: "#FFFFFF",
+                fontFamily: "MavenProMedium",
+              }}
+            />
+          </View>
           <View style={styles.buttonsContainer}>
             <TouchableOpacity
               style={styles.btnCancelar}
@@ -59,9 +76,10 @@ const styles = StyleSheet.create({
   },
   modal: {
     marginHorizontal: 20,
+    paddingVertical: 30,
+    justifyContent: "space-between",
     height: 215,
     borderRadius: 10,
-    justifyContent: "space-around",
     backgroundColor: "#FFFFFF",
     shadowColor: "#000",
     shadowOffset: {
@@ -73,6 +91,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonsContainer: {
+    marginTop: 20,
     flexDirection: "row",
     justifyContent: "center",
   },
@@ -108,6 +127,7 @@ const styles = StyleSheet.create({
     fontFamily: "MavenProMedium",
     fontSize: 15,
     textAlign: "center",
+    marginTop: 10,
   },
 });
 

@@ -1,13 +1,26 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import Switch from "./util/switch";
 import CustomModal from "./modal/modal";
+import { TextInput } from "react-native-paper";
 
 const Login = ({ navigation }) => {
   const [titleModal, setTitleModal] = useState(undefined);
+  const [placeholderModal, setPlaceholderModal] = useState(undefined);
   const [subtitleModal, setSubtitleModal] = useState(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
+  const [securePassword, setSecurePassword] = useState(true);
   const [loaded] = useFonts({
     MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../assets/fonts/MavenPro-Regular.ttf"),
@@ -26,15 +39,20 @@ const Login = ({ navigation }) => {
   const toggleModalPass = () => {
     setIsModalOpen(true), setTitleModal("Recuperar Contraseña");
     setSubtitleModal("Ingrese su mail para recuperar contraseña");
+    setPlaceholderModal("Nueva contraseña");
   };
 
   const toggleModalConexion = () => {
     setIsModalOpen(true), setTitleModal("Ingrese URL Conexión");
     setSubtitleModal(undefined);
+    setPlaceholderModal("URL Conexión");
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ justifyContent: "space-between" }}
+    >
       <View style={styles.header}>
         <Image
           style={styles.logo}
@@ -42,6 +60,55 @@ const Login = ({ navigation }) => {
         ></Image>
         <Text style={styles.title}>Nanocomm</Text>
         <Text style={styles.subtitle}>EVOLUCIÓN QUE SE TRANSMITE</Text>
+      </View>
+      <View style={form.container}>
+        <TextInput
+          label="Código proveedor"
+          value={text}
+          mode="flat"
+          underlineColor="#FF3232"
+          activeUnderlineColor="#FF3232"
+          onChangeText={(text) => setText(text)}
+          style={{
+            backgroundColor: "#FFFFFF",
+            fontFamily: "MavenProMedium",
+            marginTop: 20,
+            marginBottom: 20,
+          }}
+        />
+        <TextInput
+          label="Email"
+          value={mail}
+          mode="flat"
+          underlineColor="#FF3232"
+          activeUnderlineColor="#FF3232"
+          onChangeText={(text) => setMail(text)}
+          style={{
+            backgroundColor: "#FFFFFF",
+            fontFamily: "MavenProMedium",
+            marginBottom: 20,
+          }}
+        />
+        <TextInput
+          label="Contraseña"
+          value={password}
+          mode="flat"
+          underlineColor="#FF3232"
+          activeUnderlineColor="#FF3232"
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry={securePassword}
+          style={{
+            backgroundColor: "#FFFFFF",
+            fontFamily: "MavenProMedium",
+            marginBottom: 20,
+          }}
+          right={
+            <TextInput.Icon
+              icon={securePassword ? "eye-off" : "eye"}
+              onPress={(e) => setSecurePassword(!securePassword)}
+            />
+          }
+        />
       </View>
       <View style={styles.buttons}>
         <TouchableOpacity
@@ -64,15 +131,17 @@ const Login = ({ navigation }) => {
         setSubtitle={setSubtitleModal}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        placeholder={placeholderModal}
       />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
+
+    backgroundColor: "#FFFFFF",
   },
   header: {
     height: 323,
@@ -97,9 +166,9 @@ const styles = StyleSheet.create({
     height: 80,
   },
   buttons: {
-    marginTop: 20,
+    marginTop: 60,
     alignItems: "center",
-    paddingBottom: 100,
+    paddingBottom: 50,
   },
   btnIngresar: {
     width: 250,
@@ -129,6 +198,12 @@ const styles = StyleSheet.create({
     marginTop: 28,
     color: "#6F6F6F",
     textAlign: "center",
+  },
+});
+
+const form = StyleSheet.create({
+  container: {
+    paddingHorizontal: 40,
   },
 });
 

@@ -8,7 +8,7 @@ const CuentaTile = ({
   cuenta,
   hasButton,
 }: {
-  navigation?: any;
+  navigation: any;
   cuenta: any;
   hasButton: any;
 }) => {

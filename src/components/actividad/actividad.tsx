@@ -8,7 +8,7 @@ import { Background } from "@react-navigation/elements";
 import ItemActividad from "./actividad-item";
 import Navbar from "../navbar/navbar";
 
-const Actividad = () => {
+const Actividad = ({ navigation }) => {
   const [cuenta, setCuenta] = useState<ICuenta>();
   const [actividad, setActividad] = useState<IActividad[]>([]);
 
@@ -54,7 +54,7 @@ const Actividad = () => {
     <ScrollView style={styles.container}>
       <Navbar />
       <View style={styles.header}>
-        <CuentaTile cuenta={cuenta} hasButton={false} />
+        <CuentaTile navigation={navigation} cuenta={cuenta} hasButton={false} />
       </View>
       <View style={styles.listContainer}>
         <FlatList

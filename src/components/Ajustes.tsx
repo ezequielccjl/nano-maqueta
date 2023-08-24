@@ -6,6 +6,7 @@ import Switch from "./util/switch";
 import CustomModal from "./modal/modal";
 
 const Ajustes = () => {
+  const [placeholderModal, setPlaceholderModal] = useState(undefined);
   const [titleModal, setTitleModal] = useState(undefined);
   const [subtitleModal, setSubtitleModal] = useState(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,11 +31,13 @@ const Ajustes = () => {
   const toggleModalCodigo = () => {
     setIsModalOpen(true), setTitleModal("Ingrese Código Proveedor");
     setSubtitleModal(undefined);
+    setPlaceholderModal("Código proveedor");
   };
 
   const toggleModalConexion = () => {
     setIsModalOpen(true), setTitleModal("Ingrese URL Conexión");
     setSubtitleModal(undefined);
+    setPlaceholderModal("URL Conexión");
   };
 
   return (
@@ -95,6 +98,7 @@ const Ajustes = () => {
         setSubtitle={setSubtitleModal}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        placeholder={placeholderModal}
       />
     </View>
   );
