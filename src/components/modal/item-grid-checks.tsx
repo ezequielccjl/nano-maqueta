@@ -42,7 +42,9 @@ const ItemGridWithCheckbox = ({ item, index, lenghtData }) => {
           style={gridStyles.checkbox}
         />
       </View>
-      <Text style={gridStyles.text}>{item.name}</Text>
+      <Text style={gridStyles.text}>
+        {item.name.length > 7 ? `${item.name.slice(0, 7)}...` : item.name}
+      </Text>
     </View>
   );
 };

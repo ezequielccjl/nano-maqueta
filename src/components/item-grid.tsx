@@ -66,9 +66,13 @@ const ItemGrid = ({
           ]}
         />
       )}
-      <TouchableWithoutFeedback onPress={openToast}>
+      <TouchableWithoutFeedback /*onPress={openToast}*/>
         <Text style={gridStyles.text}>
-          {item.name.length > 6 ? `${item.name.slice(0, 6)}...` : item.name}
+          {item.name.length > 6 && !isParticion
+            ? `${item.name.slice(0, 6)}...`
+            : item.name.length > 12 && isParticion
+            ? `${item.name.slice(0, 6)}...`
+            : item.name}
         </Text>
       </TouchableWithoutFeedback>
       {hasEdit && (

@@ -40,7 +40,7 @@ export const apiCuentas: ICuenta[] = [
         activated: false
       },
       {
-        name: 'Nombre largo',
+        name: 'NombreLargo',
         activated: false
       },
       {
@@ -99,7 +99,7 @@ export const apiCuentas: ICuenta[] = [
         name: 'Partición 4',
       },
       {
-        name: 'Partición 5',
+        name: 'NombreParticion',
       },
       {
         name: 'Partición 6',

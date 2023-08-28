@@ -39,7 +39,7 @@ const Login = ({ navigation }) => {
   const toggleModalPass = () => {
     setIsModalOpen(true), setTitleModal("Recuperar Contraseña");
     setSubtitleModal("Ingrese su mail para recuperar contraseña");
-    setPlaceholderModal("Nueva contraseña");
+    setPlaceholderModal("Dirección de correo electrónico");
   };
 
   const toggleModalConexion = () => {
