@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, FlatList, Platform } from "react-native";
+import React, { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { INotificaciones, apiNotificaiones } from "../data/data";
+import { TouchableOpacity } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
-const Notificaciones = () => {
+const Notificaciones = ({ navigation }) => {
+  const [notificaciones, setNotificaciones] = useState([]);
   const headerHeight = useHeaderHeight();
   const [loaded] = useFonts({
     MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
@@ -13,9 +16,29 @@ const Notificaciones = () => {
     MavenProSemiBold: require("../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
+  useEffect(() => {
+    setNotificaciones(apiNotificaiones);
+  }, []);
+
   if (!loaded) {
     return null;
   }
+
+  const LimpiarButton = () => {
+    return (
+      <TouchableOpacity
+        style={styles.actBtn}
+        onPress={() => setNotificaciones([])}
+      >
+        <View style={styles.contActText}>
+          <Text style={styles.actText}>Limpiar</Text>
+        </View>
+        <View style={styles.actArrow}>
+          <MaterialIcons name="delete-outline" size={24} color="#FFFFFF" />
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   const NotificationItem = ({ item }: { item: INotificaciones }) => {
     return (
@@ -43,15 +66,20 @@ const Notificaciones = () => {
           </Text>
         </View>
       </View>
-      <View style={{ marginTop: 150, marginBottom: 70 }}>
-        <FlatList
-          data={apiNotificaiones}
-          renderItem={({ item }) => <NotificationItem item={item} />}
-        />
-      </View>
-      <Text style={styles.empty}>
-        No se encontraron notificaciones disponibles.
-      </Text>
+      {notificaciones.length ? (
+        <View style={{ marginTop: 150, marginBottom: 70 }}>
+          <FlatList
+            data={notificaciones}
+            renderItem={({ item }) => <NotificationItem item={item} />}
+          />
+        </View>
+      ) : (
+        <Text style={styles.empty}>
+          No se encontraron notificaciones disponibles.
+        </Text>
+      )}
+
+      <LimpiarButton />
     </View>
   );
 };
@@ -95,6 +123,51 @@ const styles = StyleSheet.create({
     color: "#6F6F6F",
     textAlign: "right",
     paddingRight: 7,
+  },
+  actBtn: {
+    position: "absolute",
+    flexDirection: "row",
+    width: 140,
+    height: 40,
+    bottom: 90,
+    right: 20,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 5,
+    zIndex: 10,
+    justifyContent: "space-between",
+    borderColor: "#6F6F6F",
+    borderStyle: "solid",
+    borderWidth: 1,
+    // Propiedades de sombra para Android (elevation) y iOS (shadow)
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.5,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+  },
+  actArrow: {
+    backgroundColor: "#6F6F6F",
+    borderTopEndRadius: 5,
+    borderBottomEndRadius: 5,
+    width: 35,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  contActText: {
+    justifyContent: "center",
+    width: 105,
+  },
+  actText: {
+    fontFamily: "MavenProMedium",
+    fontSize: 15,
+    color: "#6F6F6F",
+    textAlign: "center",
   },
 });
 

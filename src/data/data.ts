@@ -40,7 +40,7 @@ export const apiCuentas: ICuenta[] = [
         activated: false
       },
       {
-        name: 'Zona 3',
+        name: 'Nombre largo',
         activated: false
       },
       {

@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
 
 const form = StyleSheet.create({
   container: {
-    paddingHorizontal: 40,
+    paddingHorizontal: 55,
   },
 });
 

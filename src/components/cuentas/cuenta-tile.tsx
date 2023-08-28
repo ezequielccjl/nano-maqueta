@@ -1,7 +1,10 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import CuentaItem from "./CuentaItem";
+import CustomModalList from "../modal/modal-with-list";
+import { MaterialIcons } from "@expo/vector-icons";
+import CustomModal from "../modal/modal";
 
 const CuentaTile = ({
   navigation,
@@ -12,12 +15,22 @@ const CuentaTile = ({
   cuenta: any;
   hasButton: any;
 }) => {
+  const [isModalListOpen, setIsModalListOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
     MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
     MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
+
+  const handleOnPressArmar = () => {
+    setIsModalListOpen(true);
+  };
+
+  const submitEvent = () => {
+    navigation.navigate("Auth");
+  };
 
   return (
     <View style={{ alignItems: "center", marginBottom: 10 }}>
@@ -50,15 +63,25 @@ const CuentaTile = ({
             </View>
             <TouchableOpacity
               style={styles.btnAction}
-              onPress={() => navigation.navigate("Auth")}
+              onPress={handleOnPressArmar}
             >
               <Text style={styles.btnActionText}>{cuenta?.btn}</Text>
             </TouchableOpacity>
           </View>
           <View style={{ justifyContent: "center" }}>
-            <Text style={{ fontSize: 20, fontFamily: "MavenProMedium" }}>
-              {cuenta?.name}
-            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={{ fontSize: 20, fontFamily: "MavenProMedium" }}>
+                {cuenta?.name}
+              </Text>
+              {!hasButton && (
+                <TouchableOpacity
+                  onPress={() => setIsModalOpen(true)}
+                  style={{ justifyContent: "center", marginLeft: 5 }}
+                >
+                  <MaterialIcons name="edit" size={20} color="black" />
+                </TouchableOpacity>
+              )}
+            </View>
             <Text
               style={{
                 fontSize: 19,
@@ -97,6 +120,23 @@ const CuentaTile = ({
           </TouchableOpacity>
         )}
       </View>
+
+      <CustomModalList
+        isModalOpen={isModalListOpen}
+        setIsModalOpen={setIsModalListOpen}
+        title="Excluir zonas manualmente"
+        hasInput={false}
+        submitText={"Armar"}
+        submitEvent={submitEvent}
+      />
+      <CustomModal
+        isModalOpen={isModalOpen}
+        title={"Ingrese nuevo nombre"}
+        placeholder={"Nombre Cuenta"}
+        setIsModalOpen={setIsModalOpen}
+        setSubtitle={() => {}}
+        subtitle={undefined}
+      />
     </View>
   );
 };

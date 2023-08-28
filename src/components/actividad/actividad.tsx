@@ -52,7 +52,12 @@ const Actividad = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Navbar />
+      <Navbar
+        navigation={navigation}
+        title={"Actividad"}
+        hasBack={true}
+        hasEdit={false}
+      />
       <View style={styles.header}>
         <CuentaTile navigation={navigation} cuenta={cuenta} hasButton={false} />
       </View>

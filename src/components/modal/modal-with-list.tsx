@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
 import { ICuenta, apiCuentas } from "../../data/data";
 import { FlatList } from "react-native";
-import ItemGrid from "../item-grid";
+import ItemGridWithCheckbox from "./item-grid-checks";
 
 const CustomModalList = ({
   isModalOpen,
@@ -14,6 +14,7 @@ const CustomModalList = ({
   subtitle,
   placeholder,
   submitText,
+  submitEvent,
   hasInput,
 }: {
   isModalOpen: boolean;
@@ -23,6 +24,7 @@ const CustomModalList = ({
   subtitle?: string;
   placeholder?: string;
   submitText: string;
+  submitEvent: any;
   hasInput: boolean;
 }) => {
   const [cuenta, setCuenta] = useState<any>({});
@@ -59,7 +61,16 @@ const CustomModalList = ({
     <Modal visible={isModalOpen} transparent={true} animationType="fade">
       <View style={styles.modalContainer}>
         <View style={styles.modal}>
-          {title && <Text style={styles.title}>{title}</Text>}
+          {title && (
+            <Text
+              style={[
+                styles.title,
+                title.includes("zonas") && { marginBottom: 10 },
+              ]}
+            >
+              {title}
+            </Text>
+          )}
           {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
           {hasInput && (
             <View>
@@ -85,13 +96,10 @@ const CustomModalList = ({
               data={formatData(cuenta?.zonas)}
               keyExtractor={(item) => item.key}
               renderItem={({ item, index }) => (
-                <ItemGrid
+                <ItemGridWithCheckbox
                   item={item}
                   index={index}
-                  hasState={false}
                   lenghtData={cuenta.zonas.length}
-                  isParticion={false}
-                  hasEdit={false}
                 />
               )}
               numColumns={2}
@@ -105,10 +113,7 @@ const CustomModalList = ({
             >
               <Text style={styles.textCancelar}>Cancelar</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.btnEnviar}
-              onPress={() => handleClose()}
-            >
+            <TouchableOpacity style={styles.btnEnviar} onPress={submitEvent}>
               <Text style={styles.textEnviar}>{submitText}</Text>
             </TouchableOpacity>
           </View>
@@ -183,7 +188,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   listContainer: {
-    height: 120,
+    height: 150,
     marginTop: 10,
     borderColor: "rgba(111, 111, 111,0.5)",
     borderStyle: "solid",

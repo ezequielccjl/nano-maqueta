@@ -1,8 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import CustomModalList from "./modal/modal-with-list";
 import CustomModal from "./modal/modal";
+import Toast from "react-native-toast-message";
 
 const ItemGrid = ({
   item,
@@ -11,6 +18,15 @@ const ItemGrid = ({
   hasState,
   hasEdit,
   isParticion,
+  openToast,
+}: {
+  item: any;
+  index: any;
+  lenghtData: any;
+  hasState: any;
+  hasEdit: any;
+  isParticion: any;
+  openToast?: any;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const calculateBorderRadius = (index, itemCount) => {
@@ -50,7 +66,11 @@ const ItemGrid = ({
           ]}
         />
       )}
-      <Text style={gridStyles.text}>{item.name}</Text>
+      <TouchableWithoutFeedback onPress={openToast}>
+        <Text style={gridStyles.text}>
+          {item.name.length > 6 ? `${item.name.slice(0, 6)}...` : item.name}
+        </Text>
+      </TouchableWithoutFeedback>
       {hasEdit && (
         <TouchableOpacity onPress={() => setIsModalOpen(true)}>
           <MaterialIcons name="edit" size={24} color="black" />
@@ -66,6 +86,9 @@ const ItemGrid = ({
           placeholder="Nombre"
           titleList="Zonas asociadas a la partición"
           submitText="Guardar"
+          submitEvent={() => {
+            setIsModalOpen(false);
+          }}
         />
       ) : (
         <CustomModal

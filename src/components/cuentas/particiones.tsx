@@ -4,12 +4,17 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import ListaParticiones from "./lista-particiones";
 import Navbar from "../navbar/navbar";
 
-const Particiones = () => {
+const Particiones = ({ navigation }) => {
   const headerHeight = useHeaderHeight();
 
   return (
     <ScrollView style={styles.container}>
-      <Navbar />
+      <Navbar
+        navigation={navigation}
+        title={"Particiones"}
+        hasBack={true}
+        hasEdit={false}
+      />
       <View style={styles.header}>
         <Text style={styles.title}>Particiones</Text>
         <Text style={styles.title}>Oficina</Text>

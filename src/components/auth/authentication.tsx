@@ -12,7 +12,7 @@ const Authentication = ({ navigation }) => {
   });
 
   useEffect(() => {
-    console.log(password);
+    console.log("Password: ", password);
   }, [password]);
 
   if (!loaded) {
@@ -20,8 +20,13 @@ const Authentication = ({ navigation }) => {
   }
 
   const handleInput = (value) => {
-    if (value.length <= 4) {
-      setPassword(value);
+    console.log(value);
+    if (value === "back") {
+      if (password.length > 0) {
+        setPassword(password.slice(0, -1));
+      }
+    } else if (password.length < 4) {
+      setPassword(password + value);
     }
   };
 
@@ -68,7 +73,7 @@ const Authentication = ({ navigation }) => {
         <View style={styles.line} />
         <VirtualKeyboard
           color="#6F6F6F"
-          pressMode="string"
+          pressMode="char"
           onPress={(val) => handleInput(val)}
         />
         <TouchableOpacity

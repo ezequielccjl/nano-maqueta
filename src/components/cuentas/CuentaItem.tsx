@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Platform,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useHeaderHeight } from "@react-navigation/elements";
@@ -22,12 +23,18 @@ import ItemGrid from "../item-grid";
 import Switch from "../util/switch";
 import Navbar from "../navbar/navbar";
 import { AntDesign } from "@expo/vector-icons";
+import Toast, {
+  BaseToast,
+  ErrorToast,
+  ToastConfig,
+} from "react-native-toast-message";
 
 const CuentaItem = ({ navigation }) => {
   const headerHeight = useHeaderHeight();
 
   const [cuenta, setCuenta] = useState<any>({});
   const [isOn, setIsOn] = useState(false);
+  const [scrollEnabled, setScrollEnabled] = useState(true);
 
   const toggleSwitch = () => {
     navigation.navigate("Auth");
@@ -58,6 +65,49 @@ const CuentaItem = ({ navigation }) => {
     return dataFormat;
   };
 
+  const toastConfig: ToastConfig = {
+    longNameToast: ({ text1, props }) => (
+      <View
+        style={{
+          height: 60,
+          width: "80%",
+          backgroundColor: "#4B4B4B",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 50,
+        }}
+      >
+        <Text
+          style={{
+            width: "100%",
+            fontFamily: "MavenProSemiBold",
+            fontSize: 15,
+            color: "#FFFFFF",
+            textAlign: "center",
+            marginTop: -5,
+          }}
+        >
+          {text1}
+        </Text>
+      </View>
+    ),
+  };
+
+  const openToastWithName = (name) => {
+    console.log(name);
+    if (name.length > 6) {
+      const screenHeight = Dimensions.get("window").height;
+      setScrollEnabled(false);
+      Toast.show({
+        type: "longNameToast",
+        text1: name,
+        position: "bottom",
+        bottomOffset: 150,
+        onHide: () => setScrollEnabled(true),
+      });
+    }
+  };
+
   const ActividadButton = () => {
     return (
       <TouchableOpacity
@@ -75,9 +125,14 @@ const CuentaItem = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
       <ActividadButton />
-      <Navbar />
+      <Navbar
+        navigation={navigation}
+        title={"Cuenta"}
+        hasBack={true}
+        hasEdit={false}
+      />
       <View style={styles.header}>
         <TouchableOpacity
           style={{
@@ -130,12 +185,14 @@ const CuentaItem = ({ navigation }) => {
                 hasEdit={true}
                 lenghtData={cuenta.zonas.length}
                 isParticion={false}
+                openToast={() => openToastWithName(item.name)}
               />
             )}
             numColumns={2}
           />
         </View>
       </View>
+      <Toast config={toastConfig} />
     </ScrollView>
   );
 };

@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 import Switch from "./util/switch";
 import CustomModal from "./modal/modal";
 
-const Ajustes = () => {
+const Ajustes = ({ navigation }) => {
   const [placeholderModal, setPlaceholderModal] = useState(undefined);
   const [titleModal, setTitleModal] = useState(undefined);
   const [subtitleModal, setSubtitleModal] = useState(undefined);
@@ -75,7 +75,10 @@ const Ajustes = () => {
           </View>
         </View>
         <View style={{ flex: 1, alignItems: "center" }}>
-          <TouchableOpacity style={styles.btnCerrarSesion}>
+          <TouchableOpacity
+            style={styles.btnCerrarSesion}
+            onPress={() => navigation.navigate("Login")}
+          >
             <Text style={styles.btnText}>Cerrar sesión</Text>
           </TouchableOpacity>
           <TouchableOpacity

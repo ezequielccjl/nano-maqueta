@@ -5,8 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import HeaderMain from "./src/components/cuentas/HeaderCuentas";
-import Estado from "./src/components/estado/Estado";
+import HeaderMain from "./src/components/navbar/navbar-header";
+import Estado from "./src/components/navbar/navbar-estado";
 import Particiones from "./src/components/cuentas/particiones";
 import Ajustes from "./src/components/Ajustes";
 import Notificaciones from "./src/components/Notificaciones";
@@ -49,7 +49,9 @@ const FooterNavigator = () => {
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="list-alt" size={24} color={color} />
           ),
-          headerTitle: () => <HeaderMain />,
+          headerTitle: () => (
+            <HeaderMain title={"Username"} hasBack={false} hasEdit={true} />
+          ),
           headerRight: () => <Estado />,
           headerStyle: {
             backgroundColor: "#FF3232",
@@ -64,7 +66,9 @@ const FooterNavigator = () => {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="notifications" size={24} color={color} />
           ),
-          headerTitle: () => <HeaderMain />,
+          headerTitle: () => (
+            <HeaderMain title={"Username"} hasBack={false} hasEdit={true} />
+          ),
           headerRight: () => <Estado />,
           headerStyle: {
             backgroundColor: "#FF3232",
@@ -79,7 +83,9 @@ const FooterNavigator = () => {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="ios-settings-sharp" size={24} color={color} />
           ),
-          headerTitle: () => <HeaderMain />,
+          headerTitle: () => (
+            <HeaderMain title={"Username"} hasBack={false} hasEdit={true} />
+          ),
           headerRight: () => <Estado />,
           headerStyle: {
             backgroundColor: "#FF3232",
