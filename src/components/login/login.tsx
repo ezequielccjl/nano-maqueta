@@ -8,8 +8,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
-import Switch from "./util/switch";
-import CustomModal from "./modal/modal";
+import Switch from "../util/switch";
+import CustomModal from "../modal/modal";
 import { TextInput } from "react-native-paper";
 
 const Login = ({ navigation }) => {
@@ -22,10 +22,10 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [securePassword, setSecurePassword] = useState(true);
   const [loaded] = useFonts({
-    MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
-    MavenProRegular: require("../../assets/fonts/MavenPro-Regular.ttf"),
-    MavenProMedium: require("../../assets/fonts/MavenPro-Medium.ttf"),
-    MavenProSemiBold: require("../../assets/fonts/MavenPro-SemiBold.ttf"),
+    MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
+    MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
+    MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
+    MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
   if (!loaded) {
@@ -56,7 +56,7 @@ const Login = ({ navigation }) => {
       <View style={styles.header}>
         <Image
           style={styles.logo}
-          source={require("../../assets/imgs/logo.png")}
+          source={require("../../../assets/imgs/logo.png")}
         ></Image>
         <Text style={styles.title}>Nanocomm</Text>
         <Text style={styles.subtitle}>EVOLUCIÓN QUE SE TRANSMITE</Text>
@@ -69,12 +69,7 @@ const Login = ({ navigation }) => {
           underlineColor="#FF3232"
           activeUnderlineColor="#FF3232"
           onChangeText={(text) => setText(text)}
-          style={{
-            backgroundColor: "#FFFFFF",
-            fontFamily: "MavenProMedium",
-            marginTop: 20,
-            marginBottom: 20,
-          }}
+          style={form.primerInput}
         />
         <TextInput
           label="Email"
@@ -83,11 +78,7 @@ const Login = ({ navigation }) => {
           underlineColor="#FF3232"
           activeUnderlineColor="#FF3232"
           onChangeText={(text) => setMail(text)}
-          style={{
-            backgroundColor: "#FFFFFF",
-            fontFamily: "MavenProMedium",
-            marginBottom: 20,
-          }}
+          style={form.inputMarginTop}
         />
         <TextInput
           label="Contraseña"
@@ -97,11 +88,7 @@ const Login = ({ navigation }) => {
           activeUnderlineColor="#FF3232"
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={securePassword}
-          style={{
-            backgroundColor: "#FFFFFF",
-            fontFamily: "MavenProMedium",
-            marginBottom: 20,
-          }}
+          style={form.inputMarginTop}
           right={
             <TextInput.Icon
               icon={securePassword ? "eye-off" : "eye"}
@@ -205,6 +192,17 @@ const form = StyleSheet.create({
   container: {
     paddingHorizontal: 55,
   },
+  primerInput: {
+    backgroundColor: "#FFFFFF",
+    fontFamily: "MavenProMedium",
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  inputMarginTop: {
+    backgroundColor: "#FFFFFF",
+    fontFamily: "MavenProMedium",
+    marginBottom: 20,
+  }
 });
 
 export default Login;

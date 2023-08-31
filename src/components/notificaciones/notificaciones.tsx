@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList, Platform } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { useHeaderHeight } from "@react-navigation/elements";
-import { INotificaciones, apiNotificaiones } from "../data/data";
+import { INotificaciones, apiNotificaiones } from "../../data/data";
 import { TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -10,10 +10,10 @@ const Notificaciones = ({ navigation }) => {
   const [notificaciones, setNotificaciones] = useState([]);
   const headerHeight = useHeaderHeight();
   const [loaded] = useFonts({
-    MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
-    MavenProRegular: require("../../assets/fonts/MavenPro-Regular.ttf"),
-    MavenProMedium: require("../../assets/fonts/MavenPro-Medium.ttf"),
-    MavenProSemiBold: require("../../assets/fonts/MavenPro-SemiBold.ttf"),
+    MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
+    MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
+    MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
+    MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
   useEffect(() => {
@@ -27,13 +27,13 @@ const Notificaciones = ({ navigation }) => {
   const LimpiarButton = () => {
     return (
       <TouchableOpacity
-        style={styles.actBtn}
+        style={styles.cleanBtn}
         onPress={() => setNotificaciones([])}
       >
-        <View style={styles.contActText}>
-          <Text style={styles.actText}>Limpiar</Text>
+        <View style={styles.contCleanText}>
+          <Text style={styles.cleanText}>Limpiar</Text>
         </View>
-        <View style={styles.actArrow}>
+        <View style={styles.cleanArrow}>
           <MaterialIcons name="delete-outline" size={24} color="#FFFFFF" />
         </View>
       </TouchableOpacity>
@@ -53,16 +53,8 @@ const Notificaciones = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.header}>
-          <Text
-            style={{
-              position: "absolute",
-              top: 230 / 2 - headerHeight / 1.5,
-              fontSize: 30,
-              fontFamily: "MavenProBold",
-              color: "white",
-            }}
-          >
-            Nofiticaciones
+          <Text style={[styles.title, { top: 230 / 2 - headerHeight / 1.5 }]}>
+            Ajustes
           </Text>
         </View>
       </View>
@@ -94,6 +86,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 230,
   },
+  title: {
+    position: "absolute",
+    fontSize: 30,
+    fontFamily: "MavenProBold",
+    color: "white",
+  },
   container: {
     flex: 1,
   },
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
     paddingRight: 7,
   },
-  actBtn: {
+  cleanBtn: {
     position: "absolute",
     flexDirection: "row",
     width: 140,
@@ -151,7 +149,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  actArrow: {
+  cleanArrow: {
     backgroundColor: "#6F6F6F",
     borderTopEndRadius: 5,
     borderBottomEndRadius: 5,
@@ -159,13 +157,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  contActText: {
+  contCleanText: {
     justifyContent: "center",
     width: 105,
   },
-  actText: {
-    fontFamily: "MavenProMedium",
-    fontSize: 15,
+  cleanText: {
+    fontFamily: "MavenProSemiBold",
+    fontSize: 17,
     color: "#6F6F6F",
     textAlign: "center",
   },

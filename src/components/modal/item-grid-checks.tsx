@@ -1,37 +1,14 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Checkbox from "expo-checkbox";
-import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 const ItemGridWithCheckbox = ({ item, index, lenghtData }) => {
   const [isChecked, setChecked] = useState(false);
-  const calculateBorderRadius = (index, itemCount) => {
-    const isFirstElement = index === 0;
-    const isLastElement = index === itemCount - 1;
-
-    if (isFirstElement) {
-      return { borderTopLeftRadius: 10 };
-    } else if (index === 1) {
-      return { borderTopRightRadius: 10 };
-    } else if (isLastElement) {
-      return { borderBottomRightRadius: 10 };
-    } else if (index === itemCount - 2 && itemCount % 2 === 0) {
-      return { borderBottomLeftRadius: 10 };
-    }
-
-    return {};
-  };
-
-  const getRowBackgroundColor = (index) => {
-    return index % 2 === 0 ? "#FFFFFF" : "#F9F9F9";
-  };
-
   return (
     <View
       style={{
         ...gridStyles.item,
         backgroundColor: getRowBackgroundColor(Math.floor(index / 2)),
-        ...calculateBorderRadius(index, lenghtData),
       }}
     >
       <View style={{ marginLeft: 15 }}>
@@ -47,6 +24,10 @@ const ItemGridWithCheckbox = ({ item, index, lenghtData }) => {
       </Text>
     </View>
   );
+};
+
+const getRowBackgroundColor = (index) => {
+  return index % 2 === 0 ? "#FFFFFF" : "#F9F9F9";
 };
 
 const gridStyles = StyleSheet.create({

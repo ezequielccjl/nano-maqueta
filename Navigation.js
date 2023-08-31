@@ -8,14 +8,14 @@ import { Ionicons } from "@expo/vector-icons";
 import HeaderMain from "./src/components/navbar/navbar-header";
 import Estado from "./src/components/navbar/navbar-estado";
 import Particiones from "./src/components/cuentas/particiones";
-import Ajustes from "./src/components/Ajustes";
-import Notificaciones from "./src/components/Notificaciones";
+import Ajustes from "./src/components/ajustes/ajustes";
+import Notificaciones from "./src/components/notificaciones/notificaciones";
 import Authentication from "./src/components/auth/authentication";
-import Cuentas from "./src/components/cuentas/Cuentas";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "./src/components/Login";
-import CuentaItem from "./src/components/cuentas/CuentaItem";
+import Login from "./src/components/login/login";
+import CuentaItem from "./src/components/cuentas/cuenta-item";
 import Actividad from "./src/components/actividad/actividad";
+import Cuentas from './src/components/cuentas/cuentas'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

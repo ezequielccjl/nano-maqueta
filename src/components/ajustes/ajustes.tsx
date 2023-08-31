@@ -2,8 +2,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useHeaderHeight } from "@react-navigation/elements";
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
-import Switch from "./util/switch";
-import CustomModal from "./modal/modal";
+import Switch from "../util/switch";
+import CustomModal from "../modal/modal";
 
 const Ajustes = ({ navigation }) => {
   const [placeholderModal, setPlaceholderModal] = useState(undefined);
@@ -14,10 +14,9 @@ const Ajustes = ({ navigation }) => {
   const [soundOn, setSoundOn] = useState(false);
   const headerHeight = useHeaderHeight();
   const [loaded] = useFonts({
-    MavenProBold: require("../../assets/fonts/MavenPro-Bold.ttf"),
-    MavenProRegular: require("../../assets/fonts/MavenPro-Regular.ttf"),
-    MavenProMedium: require("../../assets/fonts/MavenPro-Medium.ttf"),
-    MavenProSemiBold: require("../../assets/fonts/MavenPro-SemiBold.ttf"),
+    MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
+    MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
+    MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
   if (!loaded) {
@@ -43,15 +42,7 @@ const Ajustes = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.header}>
-        <Text
-          style={{
-            position: "absolute",
-            top: 230 / 2 - headerHeight / 1.5,
-            fontSize: 30,
-            fontFamily: "MavenProBold",
-            color: "white",
-          }}
-        >
+        <Text style={[styles.title, { top: 230 / 2 - headerHeight / 1.5 }]}>
           Ajustes
         </Text>
       </View>
@@ -74,7 +65,7 @@ const Ajustes = ({ navigation }) => {
             />
           </View>
         </View>
-        <View style={{ flex: 1, alignItems: "center" }}>
+        <View style={styles.botoneraContainer}>
           <TouchableOpacity
             style={styles.btnCerrarSesion}
             onPress={() => navigation.navigate("Login")}
@@ -82,13 +73,13 @@ const Ajustes = ({ navigation }) => {
             <Text style={styles.btnText}>Cerrar sesión</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{ marginTop: 30 }}
+            style={styles.marginTop30}
             onPress={toggleModalCodigo}
           >
             <Text style={styles.btnTextGray}>Cambiar código proveedor</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{ marginTop: 30 }}
+            style={styles.marginTop30}
             onPress={toggleModalConexion}
           >
             <Text style={styles.btnTextGray}>Cambiar conexión Back-End</Text>
@@ -116,6 +107,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: 230,
+  },
+  title: {
+    position: "absolute",
+    fontSize: 30,
+    fontFamily: "MavenProBold",
+    color: "white",
   },
   container: {
     flex: 1,
@@ -154,5 +151,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  botoneraContainer: {
+    flex: 1,
+    alignItems: "center"
+  },
+  marginTop30: { marginTop: 30 }
 });
 export default Ajustes;

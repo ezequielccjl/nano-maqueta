@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import VirtualKeyboard from "react-native-virtual-keyboard";
-import React, { useEffect, useState } from "react";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { useFonts } from "expo-font";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import VirtualKeyboard from "react-native-virtual-keyboard";
 
 const Authentication = ({ navigation }) => {
   const [password, setPassword] = useState<string>("");
@@ -33,38 +32,32 @@ const Authentication = ({ navigation }) => {
   return (
     <View style={styles.authContainer}>
       <View style={styles.header}>
-        <Text
-          style={{
-            fontSize: 30,
-            fontFamily: "MavenProBold",
-            color: "white",
-          }}
-        >
+        <Text style={styles.titleAuth}>
           Ingresar clave
         </Text>
         <View style={styles.dotContainer}>
           <View
             style={[
               styles.dotBorder,
-              password.length >= 1 && { backgroundColor: "white" },
+              password.length >= 1 && styles.dotWithBg,
             ]}
           />
           <View
             style={[
               styles.dotBorder,
-              password.length >= 2 && { backgroundColor: "white" },
+              password.length >= 2 && styles.dotWithBg,
             ]}
           />
           <View
             style={[
               styles.dotBorder,
-              password.length >= 3 && { backgroundColor: "white" },
+              password.length >= 3 && styles.dotWithBg,
             ]}
           />
           <View
             style={[
               styles.dotBorder,
-              password.length >= 4 && { backgroundColor: "white" },
+              password.length >= 4 && styles.dotWithBg,
             ]}
           />
         </View>
@@ -88,6 +81,11 @@ const Authentication = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  titleAuth: {
+    fontSize: 30,
+    fontFamily: "MavenProBold",
+    color: "white",
+  },
   authContainer: {
     flex: 1,
     flexDirection: "column",
@@ -131,6 +129,9 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderRadius: 10,
   },
+  dotWithBg: {
+    backgroundColor: "white"
+  }
 });
 
 export default Authentication;

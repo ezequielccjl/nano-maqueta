@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import CustomModalList from "./modal/modal-with-list";
-import CustomModal from "./modal/modal";
+import CustomModalWithList from "../modal/modal-with-list";
+import CustomModal from "../modal/modal";
 import Toast from "react-native-toast-message";
 
 const ItemGrid = ({
@@ -71,8 +71,8 @@ const ItemGrid = ({
           {item.name.length > 6 && !isParticion
             ? `${item.name.slice(0, 6)}...`
             : item.name.length > 12 && isParticion
-            ? `${item.name.slice(0, 6)}...`
-            : item.name}
+              ? `${item.name.slice(0, 6)}...`
+              : item.name}
         </Text>
       </TouchableWithoutFeedback>
       {hasEdit && (
@@ -81,7 +81,7 @@ const ItemGrid = ({
         </TouchableOpacity>
       )}
       {isParticion ? (
-        <CustomModalList
+        <CustomModalWithList
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           title="Editar Partición"
@@ -100,7 +100,7 @@ const ItemGrid = ({
           title={"Ingrese nuevo nombre"}
           placeholder={"Nombre Zona"}
           setIsModalOpen={setIsModalOpen}
-          setSubtitle={() => {}}
+          setSubtitle={() => { }}
           subtitle={undefined}
         />
       )}
