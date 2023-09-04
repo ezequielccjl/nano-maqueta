@@ -7,11 +7,8 @@ const Switch = ({ toggleSwitch, isOn }) => {
             style={[
                 styles.outerSwitch,
                 isOn
-                    ? { justifyContent: "flex-end", backgroundColor: "#FF3232" }
-                    : {
-                        justifyContent: "flex-start",
-                        backgroundColor: "#D9D9D9",
-                    },
+                    ? styles.switchOn
+                    : styles.switchOff,
             ]}
             activeOpacity={1}
             onPress={toggleSwitch}
@@ -37,6 +34,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         paddingHorizontal: 4,
+    },
+    switchOn: {
+        justifyContent: "flex-end",
+        backgroundColor: "#FF3232"
+    },
+    switchOff: {
+        justifyContent: "flex-start",
+        backgroundColor: "#D9D9D9",
     },
 })
 

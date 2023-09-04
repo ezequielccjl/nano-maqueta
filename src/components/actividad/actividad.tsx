@@ -1,12 +1,10 @@
-import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
-import { FontAwesome5 } from "@expo/vector-icons";
-import CuentaTile from "../cuentas/cuenta-tile";
-import { ICuenta, apiCuentas, apiActividad, IActividad } from "../../data/data";
 import { useFonts } from "expo-font";
-import { Background } from "@react-navigation/elements";
-import ItemActividad from "./actividad-item";
+import React, { useEffect, useState } from "react";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { IActividad, ICuenta, apiActividad, apiCuentas } from "../../data/data";
+import CuentaTile from "../cuentas/cuenta-tile";
 import Navbar from "../navbar/navbar";
+import ItemActividad from "./actividad-item";
 
 const Actividad = ({ navigation }) => {
   const [cuenta, setCuenta] = useState<ICuenta>();
@@ -14,9 +12,7 @@ const Actividad = ({ navigation }) => {
 
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
-    MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
     MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
-    MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
   useEffect(() => {

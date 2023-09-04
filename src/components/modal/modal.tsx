@@ -1,6 +1,6 @@
-import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
-import React, { useState } from "react";
 import { useFonts } from "expo-font";
+import React, { useState } from "react";
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { TextInput } from "react-native-paper";
 
 const CustomModal = ({
@@ -14,9 +14,7 @@ const CustomModal = ({
   const [text, setText] = useState("");
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
-    MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
     MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
-    MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
   if (!loaded) {
@@ -34,7 +32,7 @@ const CustomModal = ({
         <View style={styles.modal}>
           {title && <Text style={styles.title}>{title}</Text>}
           {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-          <View style={{ marginHorizontal: 20 }}>
+          <View style={styles.inputContainer}>
             <TextInput
               label={placeholder}
               value={text}
@@ -42,10 +40,7 @@ const CustomModal = ({
               underlineColor="#FF3232"
               activeUnderlineColor="#FF3232"
               onChangeText={(text) => setText(text)}
-              style={{
-                backgroundColor: "#FFFFFF",
-                fontFamily: "MavenProMedium",
-              }}
+              style={styles.input}
             />
           </View>
           <View style={styles.buttonsContainer}>
@@ -78,7 +73,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingVertical: 30,
     justifyContent: "space-between",
-    height: 215,
     borderRadius: 10,
     backgroundColor: "#FFFFFF",
     shadowColor: "#000",
@@ -129,6 +123,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 10,
   },
+  inputContainer: {
+    marginHorizontal: 20
+  },
+  input: {
+    backgroundColor: "#FFFFFF",
+    fontFamily: "MavenProMedium",
+  }
 });
 
 export default CustomModal;

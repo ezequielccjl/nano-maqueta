@@ -1,36 +1,26 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Pressable,
-  FlatList,
-  Touchable,
-  TouchableOpacity,
-  Platform,
-  ScrollView,
-  Dimensions,
-} from "react-native";
-import React, { useState, useEffect } from "react";
-import { useHeaderHeight } from "@react-navigation/elements";
-import { useFonts } from "expo-font";
-import { ICuenta, apiCuentas } from "../../data/data";
-import CuentaTile from "./cuenta-tile";
-import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Input from "../util/Input";
-import ItemGrid from "../item-grid";
-import Switch from "../util/switch";
-import Navbar from "../navbar/navbar";
-import { AntDesign } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 import Toast, {
-  BaseToast,
-  ErrorToast,
-  ToastConfig,
+  ToastConfig
 } from "react-native-toast-message";
+import { apiCuentas } from "../../data/data";
+import ItemGrid from "../util/item-grid";
+import Navbar from "../navbar/navbar";
+import InputBuscador from "../util/buscador-input";
+import ActividadButton from "../util/actividad-button";
+import Switch from "../util/switch";
+import CuentaTile from "./cuenta-tile";
 
 const CuentaItem = ({ navigation }) => {
-  const headerHeight = useHeaderHeight();
 
   const [cuenta, setCuenta] = useState<any>({});
   const [isOn, setIsOn] = useState(false);
@@ -67,26 +57,8 @@ const CuentaItem = ({ navigation }) => {
 
   const toastConfig: ToastConfig = {
     longNameToast: ({ text1, props }) => (
-      <View
-        style={{
-          height: 60,
-          width: "80%",
-          backgroundColor: "#4B4B4B",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 50,
-        }}
-      >
-        <Text
-          style={{
-            width: "100%",
-            fontFamily: "MavenProSemiBold",
-            fontSize: 15,
-            color: "#FFFFFF",
-            textAlign: "center",
-            marginTop: -5,
-          }}
-        >
+      <View style={toast.container}>
+        <Text style={toast.text}>
           {text1}
         </Text>
       </View>
@@ -96,7 +68,6 @@ const CuentaItem = ({ navigation }) => {
   const openToastWithName = (name) => {
     console.log(name);
     if (name.length > 6) {
-      const screenHeight = Dimensions.get("window").height;
       setScrollEnabled(false);
       Toast.show({
         type: "longNameToast",
@@ -108,25 +79,9 @@ const CuentaItem = ({ navigation }) => {
     }
   };
 
-  const ActividadButton = () => {
-    return (
-      <TouchableOpacity
-        style={styles.actBtn}
-        onPress={() => navigation.navigate("Actividad")}
-      >
-        <View style={styles.contActText}>
-          <Text style={styles.actText}>Actividad</Text>
-        </View>
-        <View style={styles.actArrow}>
-          <AntDesign name="arrowright" size={20} color="white" />
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
-      <ActividadButton />
+      <ActividadButton navigation={navigation} />
       <Navbar
         navigation={navigation}
         title={"Cuenta"}
@@ -135,22 +90,18 @@ const CuentaItem = ({ navigation }) => {
       />
       <View style={styles.header}>
         <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          style={styles.btnParticiones}
           onPress={() => navigation.navigate("Particiones")}
         >
-          <Text style={styles.listRedirect}>Particiones</Text>
-          <View style={{ marginTop: -10 /*TODO: Remove Hardcoding*/ }}>
+          <Text style={styles.textParticiones}>Particiones</Text>
+          <View style={styles.iconParticiones}>
             <FontAwesome5 name="list-alt" size={20} color="#FFFFFF" />
           </View>
         </TouchableOpacity>
         <CuentaTile navigation={navigation} cuenta={cuenta} hasButton={false} />
       </View>
 
-      <View style={{ flex: 1, paddingHorizontal: 20 }}>
+      <View style={styles.bodyContainer}>
         <View>
           <TouchableOpacity
             style={styles.btnDesarmar}
@@ -162,15 +113,15 @@ const CuentaItem = ({ navigation }) => {
 
         <View style={styles.zonasContainer}>
           <Text style={styles.titleZonas}>Zonas</Text>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.mavenGray20, { marginRight: 9 }]}>
+          <View style={styles.recordarContainer}>
+            <Text style={[styles.mavenGray20, styles.recordarClave]}>
               Recordar clave
             </Text>
             <Switch toggleSwitch={toggleSwitch} isOn={isOn} />
           </View>
         </View>
-        <View style={{ marginTop: 15 }}>
-          <Input placeholder={"Buscar"} />
+        <View style={styles.inputBuscarContainer}>
+          <InputBuscador placeholder={"Buscar"} />
         </View>
         <View style={gridStyles.container}>
           <FlatList
@@ -205,16 +156,11 @@ const styles = StyleSheet.create({
     height: 230,
     width: "100%",
   },
-  title: {
-    fontSize: 30,
-    fontFamily: "MavenProBold",
-    color: "white",
-  },
   container: {
     flex: 1,
     position: "relative",
   },
-  listRedirect: {
+  textParticiones: {
     color: "white",
     fontFamily: "MavenProMedium",
     marginBottom: 13,
@@ -248,51 +194,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  actBtn: {
-    position: "absolute",
+  btnParticiones: {
     flexDirection: "row",
-    width: 140,
-    height: 40,
-    bottom: 20,
-    right: 20,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 5,
-    zIndex: 10,
-    justifyContent: "space-between",
-    borderColor: "#6F6F6F",
-    borderStyle: "solid",
-    borderWidth: 1,
-    // Propiedades de sombra para Android (elevation) y iOS (shadow)
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.5,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
-  },
-  actArrow: {
-    backgroundColor: "#6F6F6F",
-    borderTopEndRadius: 5,
-    borderBottomEndRadius: 5,
-    width: 35,
-    justifyContent: "center",
     alignItems: "center",
-  },
-  contActText: {
     justifyContent: "center",
-    width: 105,
   },
-  actText: {
-    fontFamily: "MavenProMedium",
-    fontSize: 15,
-    color: "#6F6F6F",
-    textAlign: "center",
+  iconParticiones: {
+    marginTop: -10 /*TODO: Remove Hardcoding*/
   },
+  bodyContainer: {
+    flex: 1,
+    paddingHorizontal: 20
+  },
+  recordarContainer: {
+    flexDirection: "row"
+  },
+  recordarClave: {
+    marginRight: 9
+  },
+  inputBuscarContainer: {
+    marginTop: 15
+  }
 });
 
 const gridStyles = StyleSheet.create({
@@ -301,5 +223,24 @@ const gridStyles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+const toast = StyleSheet.create({
+  container: {
+    height: 60,
+    width: "80%",
+    backgroundColor: "#4B4B4B",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
+  },
+  text: {
+    width: "100%",
+    fontFamily: "MavenProSemiBold",
+    fontSize: 15,
+    color: "#FFFFFF",
+    textAlign: "center",
+    marginTop: -5,
+  },
+})
 
 export default CuentaItem;

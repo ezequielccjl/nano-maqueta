@@ -6,17 +6,7 @@ import { ICuenta, apiCuentas } from "../../data/data";
 import { FlatList } from "react-native";
 import ItemGridWithCheckbox from "./item-grid-checks";
 
-const CustomModalList = ({
-  isModalOpen,
-  setIsModalOpen,
-  title,
-  titleList,
-  subtitle,
-  placeholder,
-  submitText,
-  submitEvent,
-  hasInput,
-}: {
+interface IModalWithListProps {
   isModalOpen: boolean;
   setIsModalOpen: any;
   title: string;
@@ -26,12 +16,13 @@ const CustomModalList = ({
   submitText: string;
   submitEvent: any;
   hasInput: boolean;
-}) => {
+}
+
+const CustomModalWithList = (props: IModalWithListProps) => {
   const [cuenta, setCuenta] = useState<any>({});
   const [text, setText] = useState("");
   const [loaded] = useFonts({
     MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
-    MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
     MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
     MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
@@ -46,7 +37,7 @@ const CustomModalList = ({
   }
 
   const handleClose = () => {
-    setIsModalOpen(false);
+    props.setIsModalOpen(false);
   };
 
   const formatData = (data) => {
@@ -58,38 +49,35 @@ const CustomModalList = ({
   };
 
   return (
-    <Modal visible={isModalOpen} transparent={true} animationType="fade">
+    <Modal visible={props.isModalOpen} transparent={true} animationType="fade">
       <View style={styles.modalContainer}>
         <View style={styles.modal}>
-          {title && (
+          {props.title && (
             <Text
               style={[
                 styles.title,
-                title.includes("zonas") && { marginBottom: 10 },
+                props.title.includes("zonas") && styles.marginTitleZonas,
               ]}
             >
-              {title}
+              {props.title}
             </Text>
           )}
-          {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-          {hasInput && (
+          {props.subtitle && <Text style={styles.subtitle}>{props.subtitle}</Text>}
+          {props.hasInput && (
             <View>
               <TextInput
-                label={placeholder}
+                label={props.placeholder}
                 value={text}
                 mode="flat"
                 underlineColor="#FF3232"
                 activeUnderlineColor="#FF3232"
                 onChangeText={(text) => setText(text)}
-                style={{
-                  backgroundColor: "#FFFFFF",
-                  fontFamily: "MavenProMedium",
-                }}
+                style={styles.inputModal}
               />
             </View>
           )}
 
-          {titleList && <Text style={styles.titleList}>{titleList}</Text>}
+          {props.titleList && <Text style={styles.titleList}>{props.titleList}</Text>}
 
           <View style={styles.listContainer}>
             <FlatList
@@ -113,8 +101,8 @@ const CustomModalList = ({
             >
               <Text style={styles.textCancelar}>Cancelar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btnEnviar} onPress={submitEvent}>
-              <Text style={styles.textEnviar}>{submitText}</Text>
+            <TouchableOpacity style={styles.btnEnviar} onPress={props.submitEvent}>
+              <Text style={styles.textEnviar}>{props.submitText}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -194,6 +182,13 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 2,
   },
+  inputModal: {
+    backgroundColor: "#FFFFFF",
+    fontFamily: "MavenProMedium",
+  },
+  marginTitleZonas: {
+    marginBottom: 10
+  }
 });
 
-export default CustomModalList;
+export default CustomModalWithList;

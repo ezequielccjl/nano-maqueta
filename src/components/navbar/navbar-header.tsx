@@ -9,10 +9,7 @@ const HeaderMain = ({ navigation, title, hasEdit, hasBack }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [loaded] = useFonts({
-    MavenProBold: require("../../../assets/fonts/MavenPro-Bold.ttf"),
     MavenProRegular: require("../../../assets/fonts/MavenPro-Regular.ttf"),
-    MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
-    MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
   if (!loaded) {
@@ -26,7 +23,7 @@ const HeaderMain = ({ navigation, title, hasEdit, hasBack }) => {
           name="arrow-back"
           size={24}
           color="#FFFFFF"
-          style={{ marginRight: 10 }}
+          style={styles.iconBack}
           onPress={() => {
             navigation.goBack();
           }}
@@ -38,7 +35,7 @@ const HeaderMain = ({ navigation, title, hasEdit, hasBack }) => {
         />
       )}
       <Text
-        style={{ color: "white", fontFamily: "MavenProRegular", fontSize: 18 }}
+        style={styles.title}
       >
         {title}
       </Text>
@@ -47,7 +44,7 @@ const HeaderMain = ({ navigation, title, hasEdit, hasBack }) => {
           name="edit"
           size={20}
           color="#FFFFFF"
-          style={{ marginLeft: 10 }}
+          style={styles.iconEdit}
           onPress={() => setIsModalOpen(true)}
         />
       )}
@@ -57,7 +54,7 @@ const HeaderMain = ({ navigation, title, hasEdit, hasBack }) => {
         title={"Ingrese su nuevo nombre"}
         placeholder={"Username"}
         subtitle={""}
-        setSubtitle={() => {}}
+        setSubtitle={() => { }}
       />
     </View>
   );
@@ -74,6 +71,17 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 10,
   },
+  iconEdit: {
+    marginLeft: 10
+  },
+  iconBack: {
+    marginRight: 10
+  },
+  title: {
+    color: "white",
+    fontFamily: "MavenProRegular",
+    fontSize: 18
+  }
 });
 
 export default HeaderMain;

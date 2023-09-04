@@ -1,11 +1,9 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
-import { useHeaderHeight } from "@react-navigation/elements";
-import ListaParticiones from "./lista-particiones";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Navbar from "../navbar/navbar";
+import ListaParticiones from "./lista-particiones";
 
 const Particiones = ({ navigation }) => {
-  const headerHeight = useHeaderHeight();
 
   return (
     <ScrollView style={styles.container}>

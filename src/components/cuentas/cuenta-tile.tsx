@@ -1,10 +1,9 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useFonts } from "expo-font";
-import CuentaItem from "./CuentaItem";
-import CustomModalList from "../modal/modal-with-list";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
+import React, { useState, useEffect } from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CustomModal from "../modal/modal";
+import CustomModalWithList from "../modal/modal-with-list";
 
 const CuentaTile = ({
   navigation,
@@ -38,7 +37,7 @@ const CuentaTile = ({
   };
 
   return (
-    <View style={{ alignItems: "center", marginBottom: 10 }}>
+    <View style={styles.containerTile}>
       <View
         key={cuenta?.id}
         style={[
@@ -47,22 +46,15 @@ const CuentaTile = ({
           hasButton && { width: "90%" },
         ]}
       >
-        <View style={{ flexDirection: "row" }}>
-          <View
-            style={{
-              alignItems: "center",
-              paddingRight: 10,
-              paddingLeft: 10,
-              paddingBottom: 26,
-              paddingTop: 26,
-            }}
-          >
+        <View style={styles.whiteContainerTile}>
+          <View style={styles.iconCuentaContainer}>
             <View
-              style={{
-                ...styles.dot,
-                backgroundColor:
-                  cuenta?.estado === "Armada" ? "#37DB5F" : "#DB3641",
-              }}
+              style={[
+                styles.dot,
+                cuenta?.estado === "Armada"
+                  ? { backgroundColor: "#37DB5F" }
+                  : { backgroundColor: "#DB3641" },
+              ]}
             >
               <Text style={styles.textDot}>{cuenta?.name?.charAt(0)}</Text>
             </View>
@@ -73,46 +65,24 @@ const CuentaTile = ({
               <Text style={styles.btnActionText}>{cuenta?.btn}</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ justifyContent: "center" }}>
-            <View style={{ flexDirection: "row" }}>
-              <Text style={{ fontSize: 20, fontFamily: "MavenProMedium" }}>
-                {cuenta?.name}
-              </Text>
+          <View style={styles.descriptionContainer}>
+            <View style={styles.descriptionTitle}>
+              <Text style={styles.name}>{cuenta?.name}</Text>
               {!hasButton && (
                 <TouchableOpacity
                   onPress={() => setIsModalOpen(true)}
-                  style={{ justifyContent: "center", marginLeft: 5 }}
+                  style={styles.btnEditName}
                 >
                   <MaterialIcons name="edit" size={20} color="black" />
                 </TouchableOpacity>
               )}
             </View>
-            <Text
-              style={{
-                fontSize: 19,
-                color: "#6F6F6F",
-                fontFamily: "MavenProMedium",
-              }}
-            >
-              Alarma {cuenta?.estado}
-            </Text>
-            <Text
-              style={{
-                fontSize: 15,
-                color: "#6F6F6F",
-                fontFamily: "MavenProMedium",
-              }}
-            >
+            <Text style={styles.estado}>Alarma {cuenta?.estado}</Text>
+            <Text style={styles.descriptionSubtitle}>
               Partición {cuenta?.particion}
             </Text>
-            <Text
-              style={{
-                fontSize: 15,
-                color: "#6F6F6F",
-                fontFamily: "MavenProMedium",
-              }}
-            >
-              Partición {cuenta?.panel}
+            <Text style={styles.descriptionSubtitle}>
+              Panel: {cuenta?.panel}
             </Text>
           </View>
         </View>
@@ -126,7 +96,7 @@ const CuentaTile = ({
         )}
       </View>
 
-      <CustomModalList
+      <CustomModalWithList
         isModalOpen={isModalListOpen}
         setIsModalOpen={setIsModalListOpen}
         title="Excluir zonas manualmente"
@@ -147,15 +117,6 @@ const CuentaTile = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 150,
-    marginBottom: 70,
-  },
-  absoluteContainer: {
-    position: "absolute",
-    top: 150,
-  },
   item: {
     backgroundColor: "white",
     borderRadius: 15,
@@ -196,6 +157,44 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
+  },
+  containerTile: {
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  whiteContainerTile: {
+    flexDirection: "row",
+  },
+  iconCuentaContainer: {
+    alignItems: "center",
+    paddingRight: 10,
+    paddingLeft: 10,
+    paddingBottom: 26,
+    paddingTop: 26,
+  },
+  descriptionContainer: {
+    justifyContent: "center",
+  },
+  descriptionTitle: {
+    flexDirection: "row",
+  },
+  name: {
+    fontSize: 20,
+    fontFamily: "MavenProMedium",
+  },
+  btnEditName: {
+    justifyContent: "center",
+    marginLeft: 5,
+  },
+  estado: {
+    fontSize: 19,
+    color: "#6F6F6F",
+    fontFamily: "MavenProMedium",
+  },
+  descriptionSubtitle: {
+    fontSize: 15,
+    color: "#6F6F6F",
+    fontFamily: "MavenProMedium",
   },
 });
 

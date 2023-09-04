@@ -4,24 +4,21 @@ import HeaderMain from "./navbar-header";
 import Estado from "./navbar-estado";
 import Constants from "expo-constants";
 
-const Navbar = ({
-  navigation,
-  title,
-  hasBack,
-  hasEdit,
-}: {
+interface INavbarProps {
   navigation: any;
   title: string;
   hasBack: boolean;
   hasEdit?: boolean;
-}) => {
+}
+
+const Navbar = (props: INavbarProps) => {
   return (
     <View style={styles.container}>
       <HeaderMain
-        navigation={navigation}
-        title={title}
-        hasBack={hasBack}
-        hasEdit={hasEdit}
+        navigation={props.navigation}
+        title={props.title}
+        hasBack={props.hasBack}
+        hasEdit={props.hasEdit}
       />
       <Estado />
     </View>

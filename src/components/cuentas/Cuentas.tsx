@@ -21,11 +21,10 @@ const Cuentas = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text
-          style={{
-            ...styles.title,
-            position: "absolute",
-            top: 230 / 2 - headerHeight / 1.5,
-          }}
+          style={[
+            styles.title,
+            { top: 230 / 2 - headerHeight / 1.5 },
+          ]}
         >
           Cuentas
         </Text>
@@ -46,6 +45,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   title: {
+    position: "absolute",
     fontSize: 35,
     fontFamily: "MavenProBold",
     color: "white",

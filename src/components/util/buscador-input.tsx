@@ -3,7 +3,7 @@ import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 
-const Input = ({ onFocus = () => {}, ...props }) => {
+const InputBuscador = ({ onFocus = () => { }, ...props }) => {
   const [loaded] = useFonts({
     MavenProMedium: require("../../../assets/fonts/MavenPro-Medium.ttf"),
   });
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Input;
+export default InputBuscador;
