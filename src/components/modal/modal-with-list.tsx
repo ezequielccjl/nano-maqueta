@@ -109,7 +109,7 @@ const CustomModalList = ({
           <View style={styles.buttonsContainer}>
             <TouchableOpacity
               style={styles.btnCancelar}
-              onPress={() => handleClose()}
+              onPress={() => handleClose}
             >
               <Text style={styles.textCancelar}>Cancelar</Text>
             </TouchableOpacity>

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import CuentaItem from "./CuentaItem";
 import CustomModalList from "../modal/modal-with-list";
@@ -24,12 +24,17 @@ const CuentaTile = ({
     MavenProSemiBold: require("../../../assets/fonts/MavenPro-SemiBold.ttf"),
   });
 
+  useEffect(() => {
+    console.log(isModalListOpen);
+  }, [isModalListOpen]);
+
   const handleOnPressArmar = () => {
     setIsModalListOpen(true);
   };
 
   const submitEvent = () => {
     navigation.navigate("Auth");
+    setIsModalListOpen(false);
   };
 
   return (
