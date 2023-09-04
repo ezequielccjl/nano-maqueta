@@ -7,11 +7,9 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-import Toast, {
-  ToastConfig
-} from "react-native-toast-message";
+import Toast, { ToastConfig } from "react-native-toast-message";
 import { apiCuentas } from "../../data/data";
 import ItemGrid from "../util/item-grid";
 import Navbar from "../navbar/navbar";
@@ -21,7 +19,6 @@ import Switch from "../util/switch";
 import CuentaTile from "./cuenta-tile";
 
 const CuentaItem = ({ navigation }) => {
-
   const [cuenta, setCuenta] = useState<any>({});
   const [isOn, setIsOn] = useState(false);
   const [scrollEnabled, setScrollEnabled] = useState(true);
@@ -58,9 +55,7 @@ const CuentaItem = ({ navigation }) => {
   const toastConfig: ToastConfig = {
     longNameToast: ({ text1, props }) => (
       <View style={toast.container}>
-        <Text style={toast.text}>
-          {text1}
-        </Text>
+        <Text style={toast.text}>{text1}</Text>
       </View>
     ),
   };
@@ -80,71 +75,77 @@ const CuentaItem = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
+    <View style={{ flex: 1 }}>
       <ActividadButton navigation={navigation} />
-      <Navbar
-        navigation={navigation}
-        title={"Cuenta"}
-        hasBack={true}
-        hasEdit={false}
-      />
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.btnParticiones}
-          onPress={() => navigation.navigate("Particiones")}
-        >
-          <Text style={styles.textParticiones}>Particiones</Text>
-          <View style={styles.iconParticiones}>
-            <FontAwesome5 name="list-alt" size={20} color="#FFFFFF" />
-          </View>
-        </TouchableOpacity>
-        <CuentaTile navigation={navigation} cuenta={cuenta} hasButton={false} />
-      </View>
-
-      <View style={styles.bodyContainer}>
-        <View>
+      <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
+        <Navbar
+          navigation={navigation}
+          title={"Cuenta"}
+          hasBack={true}
+          hasEdit={false}
+        />
+        <View style={styles.header}>
           <TouchableOpacity
-            style={styles.btnDesarmar}
-            onPress={() => navigation.navigate("Auth")}
+            style={styles.btnParticiones}
+            onPress={() => navigation.navigate("Particiones")}
           >
-            <Text style={styles.mavenGray20}>Desarmar</Text>
+            <Text style={styles.textParticiones}>Particiones</Text>
+            <View style={styles.iconParticiones}>
+              <FontAwesome5 name="list-alt" size={20} color="#FFFFFF" />
+            </View>
           </TouchableOpacity>
-        </View>
-
-        <View style={styles.zonasContainer}>
-          <Text style={styles.titleZonas}>Zonas</Text>
-          <View style={styles.recordarContainer}>
-            <Text style={[styles.mavenGray20, styles.recordarClave]}>
-              Recordar clave
-            </Text>
-            <Switch toggleSwitch={toggleSwitch} isOn={isOn} />
-          </View>
-        </View>
-        <View style={styles.inputBuscarContainer}>
-          <InputBuscador placeholder={"Buscar"} />
-        </View>
-        <View style={gridStyles.container}>
-          <FlatList
-            data={formatData(cuenta?.zonas)}
-            keyExtractor={(item) => item.key}
-            scrollEnabled={false}
-            renderItem={({ item, index }) => (
-              <ItemGrid
-                item={item}
-                index={index}
-                hasState={true}
-                hasEdit={true}
-                lenghtData={cuenta.zonas.length}
-                isParticion={false}
-                openToast={() => openToastWithName(item.name)}
-              />
-            )}
-            numColumns={2}
+          <CuentaTile
+            navigation={navigation}
+            cuenta={cuenta}
+            hasButton={false}
           />
         </View>
-      </View>
-      <Toast config={toastConfig} />
-    </ScrollView>
+
+        <View style={styles.bodyContainer}>
+          <View>
+            <TouchableOpacity
+              style={styles.btnDesarmar}
+              onPress={() => navigation.navigate("Auth")}
+            >
+              <Text style={styles.mavenGray20}>Desarmar</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.zonasContainer}>
+            <Text style={styles.titleZonas}>Zonas</Text>
+            <View style={styles.recordarContainer}>
+              <Text style={[styles.mavenGray20, styles.recordarClave]}>
+                Recordar clave
+              </Text>
+              <Switch toggleSwitch={toggleSwitch} isOn={isOn} />
+            </View>
+          </View>
+          <View style={styles.inputBuscarContainer}>
+            <InputBuscador placeholder={"Buscar"} />
+          </View>
+          <View style={gridStyles.container}>
+            <FlatList
+              data={formatData(cuenta?.zonas)}
+              keyExtractor={(item) => item.key}
+              scrollEnabled={false}
+              renderItem={({ item, index }) => (
+                <ItemGrid
+                  item={item}
+                  index={index}
+                  hasState={true}
+                  hasEdit={true}
+                  lenghtData={cuenta.zonas.length}
+                  isParticion={false}
+                  openToast={() => openToastWithName(item.name)}
+                />
+              )}
+              numColumns={2}
+            />
+          </View>
+        </View>
+        <Toast config={toastConfig} />
+      </ScrollView>
+    </View>
   );
 };
 
@@ -200,21 +201,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   iconParticiones: {
-    marginTop: -10 /*TODO: Remove Hardcoding*/
+    marginTop: -10 /*TODO: Remove Hardcoding*/,
   },
   bodyContainer: {
     flex: 1,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   recordarContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   recordarClave: {
-    marginRight: 9
+    marginRight: 9,
   },
   inputBuscarContainer: {
-    marginTop: 15
-  }
+    marginTop: 15,
+  },
 });
 
 const gridStyles = StyleSheet.create({
@@ -241,6 +242,6 @@ const toast = StyleSheet.create({
     textAlign: "center",
     marginTop: -5,
   },
-})
+});
 
 export default CuentaItem;
